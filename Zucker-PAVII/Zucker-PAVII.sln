@@ -7,6 +7,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Website(1)", "http://localh
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		ProjectReferences = "{30eae385-0bc5-42a8-9358-50bbda2dad06}|Entidades.dll;{04cd243c-b7dc-4ca1-904e-696f05a07dfe}|Dao.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_59269"
 		Debug.AspNetCompiler.PhysicalPath = "Website\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_59269\"
@@ -25,13 +26,28 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Website(1)", "http://localh
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entidades", "Entidades\Entidades.csproj", "{30EAE385-0BC5-42A8-9358-50BBDA2DAD06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dao", "Dao\Dao.csproj", "{04CD243C-B7DC-4CA1-904E-696F05A07DFE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{84F4562D-89A7-41E4-B055-5C7507FED6A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{84F4562D-89A7-41E4-B055-5C7507FED6A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84F4562D-89A7-41E4-B055-5C7507FED6A3}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{84F4562D-89A7-41E4-B055-5C7507FED6A3}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{30EAE385-0BC5-42A8-9358-50BBDA2DAD06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30EAE385-0BC5-42A8-9358-50BBDA2DAD06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30EAE385-0BC5-42A8-9358-50BBDA2DAD06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30EAE385-0BC5-42A8-9358-50BBDA2DAD06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04CD243C-B7DC-4CA1-904E-696F05A07DFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04CD243C-B7DC-4CA1-904E-696F05A07DFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04CD243C-B7DC-4CA1-904E-696F05A07DFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04CD243C-B7DC-4CA1-904E-696F05A07DFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
