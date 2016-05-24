@@ -3,25 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Zucker(7)", "http://localhost:59234", "{48DABB3F-AA9D-48ED-B8DF-E63F4ED40ED5}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebSite", "http://localhost:59251", "{5AF3E0B1-B29B-46FA-B7D2-5BAFF07EFF4A}"
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_59234"
-		Debug.AspNetCompiler.PhysicalPath = "..\..\..\Visual Studio 2013\Projects\Zucker\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_59234\"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_59251"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\..\Visual Studio 2013\Projects\Zucker\WebSite\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_59251\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_59234"
-		Release.AspNetCompiler.PhysicalPath = "..\..\..\Visual Studio 2013\Projects\Zucker\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_59234\"
+		Release.AspNetCompiler.VirtualPath = "/localhost_59251"
+		Release.AspNetCompiler.PhysicalPath = "..\..\..\Visual Studio 2013\Projects\Zucker\WebSite\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_59251\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		SlnRelativePath = "..\..\..\Visual Studio 2013\Projects\Zucker\"
+		SlnRelativePath = "..\..\..\Visual Studio 2013\Projects\Zucker\WebSite\"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
@@ -30,8 +30,8 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{48DABB3F-AA9D-48ED-B8DF-E63F4ED40ED5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{48DABB3F-AA9D-48ED-B8DF-E63F4ED40ED5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AF3E0B1-B29B-46FA-B7D2-5BAFF07EFF4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AF3E0B1-B29B-46FA-B7D2-5BAFF07EFF4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
