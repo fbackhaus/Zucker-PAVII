@@ -11,4 +11,16 @@ public partial class GolosinasWF : System.Web.UI.Page
     {
 
     }
+    protected void btnGuardar_Click(object sender, EventArgs e)
+    {
+
+    }
+    protected void btnNuevo_Click(object sender, EventArgs e)
+    {
+
+    }
+    protected void btnEliminar_Click(object sender, EventArgs e)
+    {
+
+    }
 }
