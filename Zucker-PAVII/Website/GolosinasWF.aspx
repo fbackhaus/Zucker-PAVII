@@ -57,10 +57,30 @@
             <asp:CheckBox runat="server" ID="chkEsPropia" Text="Propia" CssClass="form-control" />
         </label>
     </div>
+    <div class="form-group">
+        <asp:ValidationSummary ID="valResumen"
+            runat="server" ValidationGroup="A" />
+    </div>
+    <div class="form-group" style="text-align:center">
     <asp:Button ID="btnGuardar" runat="server" Text="Guardar" class="btn btn-success" OnClick="btnGuardar_Click" ValidationGroup="A" />
     <asp:Button ID="btnNuevo" runat="server" text="Nuevo" CssClass="btn btn-default" OnClick="btnNuevo_Click" ValidationGroup="B" />
     <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" ValidationGroup="A" />
-
+    </div>
+    <div class="form-group" id="divGrilla" runat="server">
+        <asp:GridView ID="grdAlumnos" AutoGenerateColumns="False" runat="server" OnSelectedIndexChanged="grdAlumnos_SelectedIndexChanged">
+            <Columns>
+                <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
+                <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
+                <asp:BoundField DataField="Marca" HeaderText="Marca" />
+                <asp:BoundField DataField="Stock" HeaderText="Stock" />
+                <asp:BoundField DataField="Tipo_Golosina" HeaderText="Tipo de Golosina" />
+                <asp:BoundField DataField="Precio_Vta" HeaderText="Precio de Venta" />
+                <asp:BoundField DataField="Es_Propia" HeaderText="Es Propia?" />
+                <asp:BoundField DataField="Codigo_Producto" HeaderText="Codigo del Producto" />
+            </Columns>
+        </asp:GridView>
+    </div>
     <div class="form-group" id="divExcepcion" runat="server" visible="false">
                         <label for="txtExcepcion">Por favor revise lo siguiente: </label>
                         <asp:TextBox TextMode="MultiLine" runat="server" ID="txtExcepcion" CssClass="form-control"></asp:TextBox>

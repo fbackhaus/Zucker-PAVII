@@ -54,6 +54,7 @@ public partial class GolosinasWF : System.Web.UI.Page
             {
                 g.id_golosina = ID.Value;
                 //ACA AGREGAR EL ACTUALIZAR DEL GOLOSINADAO
+                GolosinaDao.actualizar(g);
             }
             else
             {
