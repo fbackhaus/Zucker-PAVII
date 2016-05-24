@@ -76,7 +76,7 @@ public partial class GolosinasWF : System.Web.UI.Page
     }
     protected void btnNuevo_Click(object sender, EventArgs e)
     {
-
+        limpiar();
 
     }
     protected void btnEliminar_Click(object sender, EventArgs e)
@@ -119,5 +119,19 @@ public partial class GolosinasWF : System.Web.UI.Page
         ddlMarca.Items.Insert(0, new ListItem("Seleccione Marca", "0"));
     }
 
+    protected void limpiar()
+    {
+        ID = null;
+        int ultimo = GolosinaDao.ultimoID() + 1;
+        txtIdGolosina.Text = ultimo.ToString();
+        txtNombre.Text = String.Empty;
+        txtDescripcion.Text = String.Empty;
+        txtCodigoProducto.Text = String.Empty;
+        txtPrecioVta.Text = String.Empty;
+        txtStock.Text = String.Empty;
+        ddlMarca.SelectedIndex = 0;
+        ddlTipo.SelectedIndex = 0;
+        chkEsPropia.Checked = false;
+    }
 
 }
