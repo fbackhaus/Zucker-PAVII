@@ -1,12 +1,13 @@
 ﻿<%@ Page Title="Golosinas" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="GolosinasWF.aspx.cs" Inherits="GolosinasWF" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderPrincipal" Runat="Server">
 
     <div class="form-group">
         <label for="txtIdGolosina">Id</label>
-        <asp:TextBox runat="server" ID="txtIdGolosina" TextMode="Number" CssClass="form-control" Enabled="false"></asp:TextBox>
+        <asp:TextBox runat="server" ID="txtIdGolosina" TextMode="Number" CssClass="form-control" ReadOnly="true"></asp:TextBox>
         <asp:RequiredFieldValidator ID="rfvIdGolosina" ControlToValidate="txtIdGolosina" runat="server"
             ErrorMessage="Por favor ingrese un id de golosina" Text="*" ValidationGroup="A" ></asp:RequiredFieldValidator>
     </div>
@@ -59,5 +60,11 @@
     <asp:Button ID="btnGuardar" runat="server" Text="Guardar" class="btn btn-success" OnClick="btnGuardar_Click" ValidationGroup="A" />
     <asp:Button ID="btnNuevo" runat="server" text="Nuevo" CssClass="btn btn-default" OnClick="btnNuevo_Click" ValidationGroup="B" />
     <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" ValidationGroup="A" />
+
+    <div class="form-group" id="divExcepcion" runat="server" visible="false">
+                        <label for="txtExcepcion">Por favor revise lo siguiente: </label>
+                        <asp:TextBox TextMode="MultiLine" runat="server" ID="txtExcepcion" CssClass="form-control"></asp:TextBox>
+                    </div>
+
 </asp:Content>
 
