@@ -25,13 +25,22 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Website(1)", "http://localh
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entidades", "Entidades\Entidades.csproj", "{30EAE385-0BC5-42A8-9358-50BBDA2DAD06}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{84F4562D-89A7-41E4-B055-5C7507FED6A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{84F4562D-89A7-41E4-B055-5C7507FED6A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84F4562D-89A7-41E4-B055-5C7507FED6A3}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{84F4562D-89A7-41E4-B055-5C7507FED6A3}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{30EAE385-0BC5-42A8-9358-50BBDA2DAD06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30EAE385-0BC5-42A8-9358-50BBDA2DAD06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30EAE385-0BC5-42A8-9358-50BBDA2DAD06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30EAE385-0BC5-42A8-9358-50BBDA2DAD06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
