@@ -15,7 +15,7 @@ namespace Dao
         {
             //1. Abro la Conexion
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = "Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             //2.Creo el objeto command
             SqlCommand cmd = new SqlCommand();
@@ -56,7 +56,7 @@ namespace Dao
         public static int ultimoID()
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString="Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -68,7 +68,7 @@ namespace Dao
         public static void actualizarID(int id_gol)
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = "Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -82,7 +82,7 @@ namespace Dao
         {
             
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = "Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -98,7 +98,7 @@ namespace Dao
         {
             //1. Abro la Conexion
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = "Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             //2.Creo el objeto command
             SqlCommand cmd = new SqlCommand();
@@ -127,19 +127,19 @@ namespace Dao
             cn.Close();
         }
 
-        public List<Golosina> obtenerTodos()
-        {
-            List<Golosina> listaGolosinas = new List<Golosina>();
-            SqlConnection cn= new SqlConnection();
-            cn.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = cn;
-            cmd.CommandText = @"Select g.id_golosina, g.nombre, g.descripcion, marca.nombre as marca, g.stock, tipo_golosina.nombre as tipo_golosina, g.precio_vta, g.es_propia, g.codigo_barras
-                                From Golosina g INNER JOIN Marca m ON g.id_marca = m.id_marca 
-                                INNER JOIN Tipo_Golosina t ON g.id_tipo_golosina = t.id_tipo_golosina";
-            SqlDataReader dr = cmd.ExecuteReader();
-            while(dr.Read())
-            {
+//        public List<Golosina> obtenerTodos()
+//        {
+//            List<Golosina> listaGolosinas = new List<Golosina>();
+//            SqlConnection cn= new SqlConnection();
+//            cn.Open();
+//            SqlCommand cmd = new SqlCommand();
+//            cmd.Connection = cn;
+//            cmd.CommandText = @"Select g.id_golosina, g.nombre, g.descripcion, marca.nombre as marca, g.stock, tipo_golosina.nombre as tipo_golosina, g.precio_vta, g.es_propia, g.codigo_barras
+//                                From Golosina g INNER JOIN Marca m ON g.id_marca = m.id_marca 
+//                                INNER JOIN Tipo_Golosina t ON g.id_tipo_golosina = t.id_tipo_golosina";
+//            SqlDataReader dr = cmd.ExecuteReader();
+//            while(dr.Read())
+//            {
            /*     Golosina gol = new Golosina()
                 {
                     id_golosina = int.Parse(dr["id_golosina"].ToString()),
@@ -151,5 +151,5 @@ namespace Dao
                 */
             }
         }
-    }
-}
+    
+
