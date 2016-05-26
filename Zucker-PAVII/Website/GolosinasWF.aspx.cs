@@ -14,8 +14,8 @@ public partial class GolosinasWF : System.Web.UI.Page
         if(!IsPostBack)
         {
             btnEliminar.Enabled = false;
-       //     int idgol = GolosinaDao.ultimoID() + 1;
-         //  txtIdGolosina.Text = idgol.ToString();
+            int idgol = GolosinaDao.ultimoID() + 1;
+            txtIdGolosina.Text = idgol.ToString();
             cargarDDLTipoGolosina();
             cargarDDLMarca();
         }

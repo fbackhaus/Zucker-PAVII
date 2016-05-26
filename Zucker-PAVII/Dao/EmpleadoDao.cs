@@ -9,13 +9,13 @@ using System.Data;
 
 namespace Dao
 {
-    class EmpleadoDao
+   public class EmpleadoDao
     {
         public static void Insertar(Empleado empleado)
         {
             //1. Abro la Conexion
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             //2.Creo el objeto command
             SqlCommand cmd = new SqlCommand();
@@ -34,6 +34,7 @@ namespace Dao
                                                     @Fecha_nacimiento,
                                                     @Dni,
                                                     @Nro_cuenta,
+                                                    @Id_Cargo,
                                                     @Puede_realizar_pedidos) ; select Scope_Identity() as ID";
             cmd.Parameters.AddWithValue("@Id_Empleado", empleado.id_empleado);
             cmd.Parameters.AddWithValue("@Nombre", empleado.nombre);
@@ -41,6 +42,7 @@ namespace Dao
             cmd.Parameters.AddWithValue("@Fecha_nacimiento", empleado.fechaNacimiento);
             cmd.Parameters.AddWithValue("@Dni", empleado.dni);
             cmd.Parameters.AddWithValue("@Nro_cuenta", empleado.num_cuenta);
+            cmd.Parameters.AddWithValue("@Id_Cargo", empleado.id_cargo);
             cmd.Parameters.AddWithValue("@Puede_realizar_pedidos", empleado.puede_realizar_pedidos);
             
             cmd.ExecuteNonQuery();
@@ -52,20 +54,21 @@ namespace Dao
         public static int ultimoID()
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
-            cmd.CommandText = "Select id_ from Empleado";
+            cmd.CommandText = "Select id_empleado from Empleado";
             int r = Convert.ToInt32(cmd.ExecuteScalar());
             cn.Close();
+            r=r+1;
             return r;
         }
 
         public static void actualizarID(int id_empl)
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -79,7 +82,7 @@ namespace Dao
         {
 
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -95,7 +98,7 @@ namespace Dao
         {
             //1. Abro la Conexion
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             //2.Creo el objeto command
             SqlCommand cmd = new SqlCommand();
@@ -122,6 +125,8 @@ namespace Dao
 
             cn.Close();
         }
+
+       
 
     }
 }

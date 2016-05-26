@@ -21,13 +21,13 @@
     </div>
      <div class="form-group">
         <label for="lblApellido">Apellido</label>
-        <asp:TextBox runat="server" ID="txtApellido" TextMode="Date" CssClass="form-control" placeholder="Ingrese el apellido del empleado"></asp:TextBox>
+        <asp:TextBox runat="server" ID="txtApellido"  CssClass="form-control" placeholder="Ingrese el apellido del empleado"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtApellido" runat="server"
             ErrorMessage="Por favor ingrese el apellido del empleado" Text="*" ValidationGroup="A" ></asp:RequiredFieldValidator>
     </div>
      <div class="form-group">
         <label for="lblfechaNac">Fecha de nacimiento</label>
-        <asp:TextBox runat="server" ID="txtFechaNac" CssClass="form-control" placeholder="Ingrese la fecha de nacimiento del empleado"></asp:TextBox>
+        <asp:TextBox runat="server" ID="txtFechaNac" TextMode="Date" CssClass="form-control" placeholder="Ingrese la fecha de nacimiento del empleado"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="txtFechaNac" runat="server"
             ErrorMessage="Por favor ingrese la fecha de nacimiento del empleado" Text="*" ValidationGroup="A" ></asp:RequiredFieldValidator>
     </div>
@@ -49,7 +49,7 @@
     </div>
     <div class="checkbox">
         <label>
-            <asp:CheckBox runat="server" ID="chkPuedePedir" Text="Puede realizar Pedidos" CssClass="form-control" />
+            <asp:CheckBox runat="server" ID="chkPedidos" Text="Puede realizar Pedidos" CssClass="form-control" />
         </label>
     </div>
       <div class="form-group">
