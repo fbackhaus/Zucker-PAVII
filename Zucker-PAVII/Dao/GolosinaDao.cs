@@ -122,12 +122,14 @@ namespace Dao
             cmd.Parameters.AddWithValue("@Es_Propia", gol.es_propia);
             cmd.Parameters.AddWithValue("@Codigo_Barras", gol.codigo_producto);
 
+
+
             cmd.ExecuteNonQuery();
 
             cn.Close();
         }
 
-        public List<Golosina> obtenerTodos()
+     /*   public List<Golosina> obtenerTodos()
         {
             List<Golosina> listaGolosinas = new List<Golosina>();
             SqlConnection cn= new SqlConnection();
@@ -150,6 +152,7 @@ namespace Dao
                 };
                 */
             }
+    */
         }
     }
 }
