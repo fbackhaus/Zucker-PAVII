@@ -135,4 +135,8 @@ public partial class GolosinasWF : System.Web.UI.Page
         chkEsPropia.Checked = false;
     }
 
+    protected void grdAlumnos_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
 }
