@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="EmpleadoDao.cs" />
     <Compile Include="GolosinaDao.cs" />
+    <Compile Include="GolosinaQueryDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

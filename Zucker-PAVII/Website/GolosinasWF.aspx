@@ -6,12 +6,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderPrincipal" Runat="Server">
 
     <div class="form-group">
-        <label for="txtIdGolosina">Id</label>
-        <asp:TextBox runat="server" ID="txtIdGolosina" TextMode="Number" CssClass="form-control" ReadOnly="true"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="rfvIdGolosina" ControlToValidate="txtIdGolosina" runat="server"
-            ErrorMessage="Por favor ingrese un id de golosina" Text="*" ValidationGroup="A" ></asp:RequiredFieldValidator>
-    </div>
-    <div class="form-group">
         <label for="txtNombre">Nombre</label>
         <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" placeholder="Ingrese nombre de la golosina"></asp:TextBox>
         <asp:RequiredFieldValidator ID="rfvNombre" ControlToValidate="txtNombre" runat="server"
@@ -67,14 +61,14 @@
     <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" ValidationGroup="A" />
     </div>
     <div class="form-group" id="divGrilla" runat="server">
-        <asp:GridView ID="grdAlumnos" AutoGenerateColumns="False" runat="server" OnSelectedIndexChanged="grdAlumnos_SelectedIndexChanged">
+        <asp:GridView ID="gvGolosinas" AutoGenerateColumns="False" runat="server" CssClass="table table-striped table-bordered table-condensed" OnSelectedIndexChanged="gvGolosinas_SelectedIndexChanged">
             <Columns>
                 <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                 <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
-                <asp:BoundField DataField="Marca" HeaderText="Marca" />
+                <asp:BoundField DataField="NombreMarca" HeaderText="Marca" />
                 <asp:BoundField DataField="Stock" HeaderText="Stock" />
-                <asp:BoundField DataField="Tipo_Golosina" HeaderText="Tipo de Golosina" />
+                <asp:BoundField DataField="NombreTipoGolosina" HeaderText="Tipo de Golosina" />
                 <asp:BoundField DataField="Precio_Vta" HeaderText="Precio de Venta" />
                 <asp:BoundField DataField="Es_Propia" HeaderText="Es Propia?" />
                 <asp:BoundField DataField="Codigo_Producto" HeaderText="Codigo del Producto" />

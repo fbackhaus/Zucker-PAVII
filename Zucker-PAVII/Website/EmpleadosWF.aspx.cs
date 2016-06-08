@@ -51,7 +51,7 @@ public partial class EmpleadosWF : System.Web.UI.Page
             emp.puede_realizar_pedidos = chkPedidos.Checked;
 
 
-            if (ID.HasValue)
+  /*         if (ID.HasValue)
             {
                 emp.id_empleado = ID.Value;
                 //ACA AGREGAR EL ACTUALIZAR DEL GOLOSINADAO
@@ -64,6 +64,7 @@ public partial class EmpleadosWF : System.Web.UI.Page
             }
             ID = emp.id_empleado.Value;
             EmpleadoDao.actualizarID(emp.id_empleado.Value);
+   * */
         }
         catch (Exception ex)
         {
@@ -96,7 +97,7 @@ public partial class EmpleadosWF : System.Web.UI.Page
     }
      
     
-    protected int? ID
+  /*  protected int? ID
     {
         get
         {
@@ -109,7 +110,7 @@ public partial class EmpleadosWF : System.Web.UI.Page
         }
         set { ViewState["ID"] = value; }
     }
-
+    */
     protected void limpiar()
     {
         ID = null;

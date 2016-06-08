@@ -15,7 +15,7 @@ namespace Dao
         {
             //1. Abro la Conexion
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             //2.Creo el objeto command
             SqlCommand cmd = new SqlCommand();
@@ -56,11 +56,11 @@ namespace Dao
         public static int ultimoID()
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = "Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
-            cmd.CommandText = "Select id_golosina from Golosina";
+            cmd.CommandText = "Select id from ID_GOLOSINA";
             int r = Convert.ToInt32(cmd.ExecuteScalar());
             cn.Close();
             return r;
@@ -68,7 +68,7 @@ namespace Dao
         public static void actualizarID(int id_gol)
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = "Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -82,7 +82,7 @@ namespace Dao
         {
             
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = "Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -98,7 +98,7 @@ namespace Dao
         {
             //1. Abro la Conexion
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = "Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             //2.Creo el objeto command
             SqlCommand cmd = new SqlCommand();
@@ -129,46 +129,34 @@ namespace Dao
             cn.Close();
         }
 
-<<<<<<< HEAD
-     /*   public List<Golosina> obtenerTodos()
+
+        public static Golosina obtenerPorId(int id)
         {
-            List<Golosina> listaGolosinas = new List<Golosina>();
-            SqlConnection cn= new SqlConnection();
+            Golosina g = null;
+            SqlConnection cn = new SqlConnection("Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True");
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
-            cmd.CommandText = @"Select g.id_golosina, g.nombre, g.descripcion, marca.nombre as marca, g.stock, tipo_golosina.nombre as tipo_golosina, g.precio_vta, g.es_propia, g.codigo_barras
-                                From Golosina g INNER JOIN Marca m ON g.id_marca = m.id_marca 
-                                INNER JOIN Tipo_Golosina t ON g.id_tipo_golosina = t.id_tipo_golosina";
+            cmd.CommandText = @"Select id_golosina, nombre, descripcion, id_marca, stock, id_tipo_golosina, precio_vta,
+                                 es_propia, codigo_barras FROM Golosina Where id_golosina = @id_gol";
+            cmd.Parameters.AddWithValue("@id_gol", id);
             SqlDataReader dr = cmd.ExecuteReader();
-            while(dr.Read())
+            if(dr.Read())
             {
-=======
-//        public List<Golosina> obtenerTodos()
-//        {
-//            List<Golosina> listaGolosinas = new List<Golosina>();
-//            SqlConnection cn= new SqlConnection();
-//            cn.Open();
-//            SqlCommand cmd = new SqlCommand();
-//            cmd.Connection = cn;
-//            cmd.CommandText = @"Select g.id_golosina, g.nombre, g.descripcion, marca.nombre as marca, g.stock, tipo_golosina.nombre as tipo_golosina, g.precio_vta, g.es_propia, g.codigo_barras
-//                                From Golosina g INNER JOIN Marca m ON g.id_marca = m.id_marca 
-//                                INNER JOIN Tipo_Golosina t ON g.id_tipo_golosina = t.id_tipo_golosina";
-//            SqlDataReader dr = cmd.ExecuteReader();
-//            while(dr.Read())
-//            {
->>>>>>> 338f7be1e8bd02d13e8a67daed8cae0ea2b104d5
-           /*     Golosina gol = new Golosina()
-                {
-                    id_golosina = int.Parse(dr["id_golosina"].ToString()),
-                    nombre = dr["nombre"].ToString(),
-                    descripcion = dr["descripcion"].ToString(),
-
-                    
-                };
-                */
+                g = new Golosina();
+                g.id_golosina = int.Parse(dr["id_golosina"].ToString());
+                g.id_marca = int.Parse(dr["id_marca"].ToString());
+                g.id_tipo_golosina = int.Parse(dr["id_tipo_golosina"].ToString());
+                g.nombre = dr["nombre"].ToString();
+                g.descripcion = dr["descripcion"].ToString();
+                g.stock = int.Parse(dr["stock"].ToString());
+                g.precio_vta = double.Parse(dr["precio_vta"].ToString());
+                g.es_propia = bool.Parse(dr["es_propia"].ToString());
+                g.codigo_producto = int.Parse(dr["codigo_barras"].ToString());
             }
-    */
+            return g;
+        }
+            }
         }
     
 

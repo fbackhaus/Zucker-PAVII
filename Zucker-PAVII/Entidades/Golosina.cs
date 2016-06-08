@@ -14,11 +14,11 @@ namespace Entidades
         public string nombre { get; set; }
         public string descripcion { get; set; }
         public int? stock { get; set; }
-        public float precio_vta { get; set; }
+        public double precio_vta { get; set; }
         public bool es_propia { get; set; }
         public int codigo_producto { get; set; }
 
-        public Golosina(int? id_golosina, int id_marca, int id_tipo_golosina, int? stock, float precio_vta, bool es_propia, int codigo_producto)
+        public Golosina(int? id_golosina, int id_marca, int id_tipo_golosina, int? stock, double precio_vta, bool es_propia, int codigo_producto)
         {
             this.id_golosina = id_golosina;
             this.id_marca = id_marca;

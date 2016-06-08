@@ -14,10 +14,9 @@ public partial class GolosinasWF : System.Web.UI.Page
         if(!IsPostBack)
         {
             btnEliminar.Enabled = false;
-            int idgol = GolosinaDao.ultimoID() + 1;
-            txtIdGolosina.Text = idgol.ToString();
             cargarDDLTipoGolosina();
             cargarDDLMarca();
+            CargarGrilla();
         }
 
     }
@@ -25,28 +24,20 @@ public partial class GolosinasWF : System.Web.UI.Page
     {
         if (!Page.IsValid)
             return;
-        try
-        {
             Golosina g = new Golosina();
-     
-            int id_gol;
-                if (int.TryParse(txtIdGolosina.Text, out id_gol) == true)
-                {
-                    g.id_golosina = id_gol;
-                }
-
-
-            
+            g.id_golosina = GolosinaDao.ultimoID() + 1;
             g.nombre = txtNombre.Text;
             g.id_marca = ddlMarca.SelectedIndex;
             g.id_tipo_golosina = ddlTipo.SelectedIndex;
-            g.precio_vta = float.Parse(txtPrecioVta.Text);
+            g.precio_vta = double.Parse(txtPrecioVta.Text);
             g.descripcion = txtDescripcion.Text;
-            int s = int.Parse(txtStock.Text);
+    /*        int s = int.Parse(txtStock.Text);
             if (s >= 0)
                 g.stock = s;
             else
                 g.stock = 0;
+      */
+            g.stock = int.Parse(txtStock.Text);
             g.es_propia = chkEsPropia.Checked;
             g.codigo_producto = int.Parse(txtCodigoProducto.Text);
 
@@ -63,17 +54,8 @@ public partial class GolosinasWF : System.Web.UI.Page
             }
             ID = g.id_golosina.Value;
             GolosinaDao.actualizarID(g.id_golosina.Value);
+            CargarGrilla();
             
-        }
-        catch(Exception ex)
-        {
-        //    string script = "alert(\"Ha ocurrido un error del tipo: " + ex.Message + "\");";
-          //  ScriptManager.RegisterStartupScript(this, GetType(),
-            //                      "ServerControlScript", script, true);
-
-            divExcepcion.Visible = true;
-            txtExcepcion.Text = ex.Message;
-        }
     }
     protected void btnNuevo_Click(object sender, EventArgs e)
     {
@@ -123,8 +105,6 @@ public partial class GolosinasWF : System.Web.UI.Page
     protected void limpiar()
     {
         ID = null;
-        int ultimo = GolosinaDao.ultimoID() + 1;
-        txtIdGolosina.Text = ultimo.ToString();
         txtNombre.Text = String.Empty;
         txtDescripcion.Text = String.Empty;
         txtCodigoProducto.Text = String.Empty;
@@ -135,8 +115,29 @@ public partial class GolosinasWF : System.Web.UI.Page
         chkEsPropia.Checked = false;
     }
 
-    protected void grdAlumnos_SelectedIndexChanged(object sender, EventArgs e)
+    protected void gvGolosinas_SelectedIndexChanged(object sender, EventArgs e)
     {
+        limpiar();
+        ID = int.Parse(gvGolosinas.SelectedDataKey.Value.ToString());
 
+        Golosina g = GolosinaDao.obtenerPorId(ID.Value);
+        txtNombre.Text = g.nombre;
+        txtDescripcion.Text = g.descripcion;
+        txtCodigoProducto.Text = g.codigo_producto.ToString();
+        txtPrecioVta.Text = g.precio_vta.ToString();
+        txtStock.Text = g.stock.ToString();
+        ddlMarca.SelectedIndex = g.id_marca;
+        ddlTipo.SelectedIndex = g.id_tipo_golosina;
+        chkEsPropia.Checked = g.es_propia;
+    }
+
+    protected void CargarGrilla()
+    {
+        gvGolosinas.DataSource = from gol in GolosinaQueryDao.ObtenerTodos()
+                                 orderby gol.id_golosina
+                                 select gol;
+
+        gvGolosinas.DataKeyNames = new String[] { "id_golosina" };
+        gvGolosinas.DataBind();
     }
 }
