@@ -156,6 +156,19 @@ namespace Dao
             }
             return g;
         }
+
+        public static void eliminar(int id)
+        {
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = "Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = "Delete FROM Golosina Where id_golosina = @idgol";
+            cmd.Parameters.AddWithValue("@idgol", id);
+            cmd.ExecuteNonQuery();
+            cn.Close();
+        }
             }
         }
     

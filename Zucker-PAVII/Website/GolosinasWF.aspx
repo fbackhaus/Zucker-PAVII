@@ -1,10 +1,10 @@
 ﻿<%@ Page Title="Golosinas" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="GolosinasWF.aspx.cs" Inherits="GolosinasWF" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-
+    <title>Nueva Golosina</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderPrincipal" Runat="Server">
-
+    <h1 style="text-align: center; color:black;">Registro de Nueva Golosina</h1>
     <div class="form-group">
         <label for="txtNombre">Nombre</label>
         <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" placeholder="Ingrese nombre de la golosina"></asp:TextBox>
@@ -18,13 +18,13 @@
     <div class="form-group">
         <label for="ddlMarca">Marca</label>
         <asp:DropDownList runat="server" ID="ddlMarca" CssClass="form-control"></asp:DropDownList>
-        <asp:RequiredFieldValidator runat="server" ID="rfvMarca" CssClass="form-control" InitialValue="-1" Display="Dynamic"
+        <asp:RequiredFieldValidator runat="server" ID="rfvMarca" CssClass="form-control" InitialValue="0" Display="Dynamic"
             ValidationGroup="A" ControlToValidate="ddlMarca" Text="*" ErrorMessage="Por favor seleccione la Marca de la golosina"></asp:RequiredFieldValidator>
     </div>
         <div class="form-group">
         <label for="ddlTipo">Tipo de Golosina</label>
         <asp:DropDownList runat="server" ID="ddlTipo" CssClass="form-control"></asp:DropDownList>
-        <asp:RequiredFieldValidator runat="server" ID="rfvTipo" CssClass="form-control" InitialValue="-1" Display="Dynamic"
+        <asp:RequiredFieldValidator runat="server" ID="rfvTipo" CssClass="form-control" InitialValue="0" Display="Dynamic"
             ValidationGroup="A" ControlToValidate="ddlTipo" Text="*" ErrorMessage="Por favor seleccione el tipo de la golosina"></asp:RequiredFieldValidator>
     </div>
     
@@ -39,12 +39,14 @@
         <asp:TextBox runat="server" ID="txtStock" TextMode="Number" CssClass="form-control" placeholder="Ingrese stock"></asp:TextBox>
         <asp:RequiredFieldValidator ID="rfvStock" ControlToValidate="txtStock" runat="server"
             ErrorMessage="Por favor ingrese el stock inicial" Text="*" ValidationGroup="A" ></asp:RequiredFieldValidator>
+        <asp:CompareValidator ID="cvStock" ErrorMessage="El stock ingresado es invalido" Text="*" ValidationGroup="A" runat="server" ControlToValidate="txtStock" Operator="GreaterThanEqual" ValueToCompare="0"></asp:CompareValidator>
     </div>
     <div class="form-group">
         <label for="txtPrecioVta">Precio de Venta</label>
         <asp:TextBox runat="server" ID="txtPrecioVta" TextMode="Number" CssClass="form-control" ></asp:TextBox>
         <asp:RequiredFieldValidator ID="rfvPrecioVta" ControlToValidate="txtPrecioVta" runat="server"
             ErrorMessage="Por favor ingrese el Precio de Venta" Text="*" ValidationGroup="A" ></asp:RequiredFieldValidator>
+        <asp:CompareValidator ID="cvPrecio" ErrorMessage="El precio ingresado es invalido" Text="*" ValidationGroup="A" runat="server" ControlToValidate="txtPrecioVta" Operator="GreaterThan" ValueToCompare="0"></asp:CompareValidator>
     </div>
     <div class="checkbox">
         <label>
@@ -56,14 +58,13 @@
             runat="server" ValidationGroup="A" />
     </div>
     <div class="form-group" style="text-align:center">
-    <asp:Button ID="btnGuardar" runat="server" Text="Guardar" class="btn btn-success" OnClick="btnGuardar_Click" ValidationGroup="A" />
-    <asp:Button ID="btnNuevo" runat="server" text="Nuevo" CssClass="btn btn-default" OnClick="btnNuevo_Click" ValidationGroup="B" />
+    <asp:Button ID="btnGuardar" runat="server" Text="Guardar" class="btn btn-success" OnClick="btnGuardar_Click" ValidationGroup="A"/>
+    <asp:Button ID="btnNuevo" runat="server" text="Nuevo" CssClass="btn btn-default" OnClick="btnNuevo_Click" ValidationGroup="B" OnClientClick="return confirm('Esta seguro que desea eliminar la golosina?');"/>
     <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" ValidationGroup="A" />
     </div>
-    <div class="form-group" id="divGrilla" runat="server">
-        <asp:GridView ID="gvGolosinas" AutoGenerateColumns="False" runat="server" CssClass="table table-striped table-bordered table-condensed" OnSelectedIndexChanged="gvGolosinas_SelectedIndexChanged">
+    <div class="grid" id="divGrilla" runat="server">
+        <asp:GridView ID="gvGolosinas" AutoGenerateColumns="False" runat="server" HeaderStyle-BackColor="LightGray" CssClass="table table-hover table-bordered table-condensed" BackColor="White" OnSelectedIndexChanged="gvGolosinas_SelectedIndexChanged">
             <Columns>
-                <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                 <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
                 <asp:BoundField DataField="NombreMarca" HeaderText="Marca" />

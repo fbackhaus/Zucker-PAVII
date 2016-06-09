@@ -10,5 +10,6 @@ namespace Entidades
     {
         public string nombreMarca { get; set; }
         public string nombreTipoGolosina { get; set; }
+        public string nombreEsPropia { get; set; }
     }
 }

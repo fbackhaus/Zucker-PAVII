@@ -31,12 +31,6 @@ public partial class GolosinasWF : System.Web.UI.Page
             g.id_tipo_golosina = ddlTipo.SelectedIndex;
             g.precio_vta = double.Parse(txtPrecioVta.Text);
             g.descripcion = txtDescripcion.Text;
-    /*        int s = int.Parse(txtStock.Text);
-            if (s >= 0)
-                g.stock = s;
-            else
-                g.stock = 0;
-      */
             g.stock = int.Parse(txtStock.Text);
             g.es_propia = chkEsPropia.Checked;
             g.codigo_producto = int.Parse(txtCodigoProducto.Text);
@@ -46,15 +40,19 @@ public partial class GolosinasWF : System.Web.UI.Page
                 g.id_golosina = ID.Value;
                 //ACA AGREGAR EL ACTUALIZAR DEL GOLOSINADAO
                 GolosinaDao.actualizar(g);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Golosina Modificada con Exito!')", true);
             }
             else
             {
                 //GUARDO LA GOLOSINA EN LA BD
                GolosinaDao.Insertar(g);
+               GolosinaDao.actualizarID(g.id_golosina.Value);
+               ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Golosina Insertada con Exito!')", true);
             }
             ID = g.id_golosina.Value;
-            GolosinaDao.actualizarID(g.id_golosina.Value);
             CargarGrilla();
+            limpiar();
+     
             
     }
     protected void btnNuevo_Click(object sender, EventArgs e)
@@ -64,7 +62,12 @@ public partial class GolosinasWF : System.Web.UI.Page
     }
     protected void btnEliminar_Click(object sender, EventArgs e)
     {
-
+        if (ID.HasValue)
+        {
+            GolosinaDao.eliminar(ID.Value);
+            limpiar();
+            CargarGrilla();
+        }
     }
 
     protected int? ID
@@ -113,6 +116,7 @@ public partial class GolosinasWF : System.Web.UI.Page
         ddlMarca.SelectedIndex = 0;
         ddlTipo.SelectedIndex = 0;
         chkEsPropia.Checked = false;
+        btnEliminar.Enabled = false;
     }
 
     protected void gvGolosinas_SelectedIndexChanged(object sender, EventArgs e)
@@ -129,6 +133,7 @@ public partial class GolosinasWF : System.Web.UI.Page
         ddlMarca.SelectedIndex = g.id_marca;
         ddlTipo.SelectedIndex = g.id_tipo_golosina;
         chkEsPropia.Checked = g.es_propia;
+        btnEliminar.Enabled = true;
     }
 
     protected void CargarGrilla()
