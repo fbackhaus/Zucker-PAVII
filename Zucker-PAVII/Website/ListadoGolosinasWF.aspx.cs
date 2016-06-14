@@ -28,20 +28,13 @@ public partial class ListadoGolosinasWF : System.Web.UI.Page
     }
     protected void cargarDDLTipoGolosina()
     {
-        string consultaTipo = "Select id_tipo_golosina, nombre FROM Tipo_Golosina";
-        ddlTipo.DataSource = GolosinaDao.leerBD(consultaTipo);
-        ddlTipo.DataTextField = "nombre";
-        ddlTipo.DataValueField = "id_tipo_golosina";
+        ddlTipo.DataSource = GolosinaDao.cargarComboTipo();
         ddlTipo.DataBind();
-
         ddlTipo.Items.Insert(0, new ListItem("Todas", "0"));
     }
     protected void cargarDDLMarca()
     {
-        string consultaMarca = "Select id_marca, nombre FROM Marca";
-        ddlMarca.DataSource = GolosinaDao.leerBD(consultaMarca);
-        ddlMarca.DataTextField = "nombre";
-        ddlMarca.DataValueField = "id_marca";
+        ddlMarca.DataSource = GolosinaDao.cargarComboMarca();
         ddlMarca.DataBind();
 
         ddlMarca.Items.Insert(0, new ListItem("Todas", "0"));

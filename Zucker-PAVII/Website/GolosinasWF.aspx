@@ -65,6 +65,7 @@
     <div class="grid" id="divGrilla" runat="server">
         <asp:GridView ID="gvGolosinas" AutoGenerateColumns="False" runat="server" HeaderStyle-BackColor="LightGray" CssClass="table table-hover table-bordered table-condensed" BackColor="White" OnSelectedIndexChanged="gvGolosinas_SelectedIndexChanged">
             <Columns>
+                <asp:CommandField SelectText="Seleccionar" ShowSelectButton="true" />
                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                 <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
                 <asp:BoundField DataField="NombreMarca" HeaderText="Marca" />
