@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Empleado.cs" />
+    <Compile Include="EmpleadoQuery.cs" />
     <Compile Include="Golosina.cs" />
     <Compile Include="GolosinaQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

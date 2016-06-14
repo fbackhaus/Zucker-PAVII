@@ -15,20 +15,18 @@ namespace Dao
         {
             //1. Abro la Conexion
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = "Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             //2.Creo el objeto command
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
-            cmd.CommandText = @"Insert into Empleado (id_empleado,
-                                                    nombre,
+            cmd.CommandText = @"Insert into Empleado (nombre,
                                                     apellido,
                                                     fecha_nacimiento,
                                                     dni,
-                                                    id_cargo,
                                                     nro_cuenta,
+                                                    id_cargo,
                                                     puede_realizar_pedidos)values (
-                                                    @Id_Empleado,
                                                     @Nombre,
                                                     @Apellido,
                                                     @Fecha_nacimiento,
@@ -36,7 +34,7 @@ namespace Dao
                                                     @Nro_cuenta,
                                                     @Id_Cargo,
                                                     @Puede_realizar_pedidos) ; select Scope_Identity() as ID";
-            cmd.Parameters.AddWithValue("@Id_Empleado", empleado.id_empleado);
+        //  cmd.Parameters.AddWithValue("@Id_Empleado", empleado.id_empleado);
             cmd.Parameters.AddWithValue("@Nombre", empleado.nombre);
             cmd.Parameters.AddWithValue("@Apellido", empleado.apellido);
             cmd.Parameters.AddWithValue("@Fecha_nacimiento", empleado.fechaNacimiento);
@@ -51,24 +49,27 @@ namespace Dao
         }
 
 
-        public static int ultimoID()
+        public static int UltimoIDPrimero()
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = "Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
-            cmd.CommandText = "Select id_empleado from Empleado";
+            cmd.CommandText = "SELECT ISNULL(MAX(id_empleado), 0) AS ID FROM Empleado";
             int r = Convert.ToInt32(cmd.ExecuteScalar());
             cn.Close();
-            r=r+1;
-            return r;
+            
+            return r+1;
         }
+
+     
+
 
         public static void actualizarID(int id_empl)
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = "Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -82,7 +83,7 @@ namespace Dao
         {
 
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = "Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -98,7 +99,7 @@ namespace Dao
         {
             //1. Abro la Conexion
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = "Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             //2.Creo el objeto command
             SqlCommand cmd = new SqlCommand();

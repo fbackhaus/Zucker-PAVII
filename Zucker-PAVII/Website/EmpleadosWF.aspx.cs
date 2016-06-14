@@ -14,7 +14,7 @@ public partial class EmpleadosWF : System.Web.UI.Page
         if (!IsPostBack)
         {
             btnEliminar.Enabled = false;
-            int idemp = EmpleadoDao.ultimoID();
+            int idemp = EmpleadoDao.UltimoIDPrimero();
             txtIdEmpleado.Text = idemp.ToString();
             cargarDDLCargo();
             cargarDDLCargo();
@@ -34,11 +34,11 @@ public partial class EmpleadosWF : System.Web.UI.Page
         {
             Empleado emp = new Empleado();
 
-            int id_emp;
-            if (int.TryParse(txtIdEmpleado.Text, out id_emp) == true)
-            {
-                emp.id_empleado = id_emp;
-            }
+            //int id_emp;
+            //if (int.TryParse(txtIdEmpleado.Text, out id_emp) == true)
+            //{
+            //    emp.id_empleado = id_emp;
+            //}
 
 
 
@@ -50,6 +50,7 @@ public partial class EmpleadosWF : System.Web.UI.Page
             emp.num_cuenta = Convert.ToInt32(txtCuenta.Text);
             emp.puede_realizar_pedidos = chkPedidos.Checked;
 
+            EmpleadoDao.Insertar(emp);
 
   /*         if (ID.HasValue)
             {
@@ -114,7 +115,15 @@ public partial class EmpleadosWF : System.Web.UI.Page
     protected void limpiar()
     {
         ID = null;
-        int ultimo = GolosinaDao.ultimoID() + 1;
+        int ultimo;
+        if (EmpleadoDao.UltimoIDPrimero() != 1)
+        {
+            ultimo = EmpleadoDao.UltimoIDPrimero();
+        }
+        else
+        {
+            ultimo = EmpleadoDao.UltimoIDPrimero() - 1;
+        }
         txtIdEmpleado.Text = ultimo.ToString();
         txtNombre.Text = String.Empty;
         txtApellido.Text = String.Empty;

@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmpleadoDao.cs" />
+    <Compile Include="EmpleadoQueryDao.cs" />
     <Compile Include="GolosinaDao.cs" />
     <Compile Include="GolosinaQueryDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

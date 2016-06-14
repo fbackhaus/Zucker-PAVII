@@ -28,7 +28,7 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="/GolosinasWF.aspx">Home</a></li>
-      <li><a href="#">Empleados</a></li> 
+      <li><a href="EmpleadosWF.aspx">Empleados</a></li> 
       <li><a href="#">Proveedores</a></li> 
     </ul>
     <ul class="nav navbar-nav navbar-right">

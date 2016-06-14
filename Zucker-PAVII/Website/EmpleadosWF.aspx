@@ -6,9 +6,9 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderPrincipal" Runat="Server">
-
+    <h1 style="text-align: center">Registro de Empleados</h1>
      <div class="form-group">
-        <label for="txtIdEmpleado">Id</label>
+        <label for="txtIdEmpleado">ID</label>
         <asp:TextBox runat="server" ID="txtIdEmpleado" TextMode="Number" CssClass="form-control" ReadOnly="true"></asp:TextBox>
         <asp:RequiredFieldValidator ID="rfvIdEmpleado" ControlToValidate="txtIdEmpleado" runat="server"
             ErrorMessage="Por favor ingrese un ID de Empleado" Text="*" ValidationGroup="A" ></asp:RequiredFieldValidator>
