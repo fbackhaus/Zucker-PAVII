@@ -7,12 +7,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderPrincipal" Runat="Server">
     <h1 style="text-align: center">Registro de Empleados</h1>
-     <div class="form-group">
-        <label for="txtIdEmpleado">ID</label>
-        <asp:TextBox runat="server" ID="txtIdEmpleado" TextMode="Number" CssClass="form-control" ReadOnly="true"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="rfvIdEmpleado" ControlToValidate="txtIdEmpleado" runat="server"
-            ErrorMessage="Por favor ingrese un ID de Empleado" Text="*" ValidationGroup="A" ></asp:RequiredFieldValidator>
-    </div>
+     
     <div class="form-group">
         <label for="txtNombre">Nombre</label>
         <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" placeholder="Ingrese nombre del empleado"></asp:TextBox>
@@ -64,16 +59,16 @@
     </div>
 
    <div class="form-group" id="divGrilla" runat="server">
-        <asp:GridView ID="grdEmpleados" AutoGenerateColumns="False" runat="server" OnSelectedIndexChanged="grdEmpleados_SelectedIndexChanged">
+        <asp:GridView ID="gvEmpleados" AutoGenerateColumns="False" runat="server" OnSelectedIndexChanged="gvEmpleados_SelectedIndexChanged">
             <Columns>
                 <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
-                <asp:BoundField DataField="Id_Empleado" HeaderText="ID" />
+                 <asp:BoundField DataField="Id_empleado" HeaderText="ID" />
                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                 <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
-                <asp:BoundField DataField="Fecha_Nacimiento" HeaderText="Fecha de Nacimiento" />
-                <asp:BoundField DataField="DNI" HeaderText="DNI" />
-                <asp:BoundField DataField="Id_Cargo" HeaderText="Cargo" />
-                <asp:BoundField DataField="Puede_realidar_pedidos" HeaderText="Puede realizar pedidos?" />
+                <asp:BoundField DataField="numeroDNI" HeaderText="DNI" />
+                <asp:BoundField DataField="nombreCargo" HeaderText="Cargo" />
+                <asp:BoundField DataField="FechaNacimiento" HeaderText="Fecha de Nacimiento" />
+                <asp:BoundField DataField="nombrePedido" HeaderText="Puede realizar pedidos?" />
               </Columns>
         </asp:GridView>
 

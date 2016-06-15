@@ -20,20 +20,26 @@ namespace Dao
            cn.Open();
            SqlCommand cmd = new SqlCommand();
            cmd.Connection = cn;
-           cmd.CommandText = @"SELECT Empleado.nombre, Empleado.apellido, Empleado.dni, Empleado.fecha_nacimiento,
-                                Empleado.puede_realizar_pedidos, Cargo.nombre AS Expr1
-                            FROM Cargo INNER JOIN Empleado ON Cargo.id_cargo = Empleado.id_cargo";
+           cmd.CommandText = @"SELECT Empleado.id_empleado, Empleado.nombre, Empleado.apellido, Empleado.dni, Empleado.fecha_nacimiento, 
+                                Empleado.puede_realizar_pedidos, Cargo.nombre as car FROM Cargo INNER JOIN
+                                Empleado ON Cargo.id_cargo = Empleado.id_cargo";
 
            SqlDataReader dr = cmd.ExecuteReader();
            while (dr.Read())
            {
                e = new EmpleadoQuery();
+               e.id_empleado = int.Parse(dr["id_empleado"].ToString());
                e.nombre = (dr["nombre"].ToString());
                e.apellido = dr["apellido"].ToString();
                e.numeroDNI = dr["dni"].ToString();
                e.fechaNacimiento = DateTime.Parse(dr["fecha_nacimiento"].ToString());
-               e.nombrePedido =dr["puede_realizar_pedidos"].ToString();
-               e.nombreCargo = dr["tipo_golosina"].ToString();
+
+               e.nombreCargo = dr["car"].ToString();
+               e.puede_realizar_pedidos = bool.Parse(dr["puede_realizar_pedidos"].ToString());
+               if (e.puede_realizar_pedidos)
+                   e.nombrePedido = "Si";
+               else
+                   e.nombrePedido = "No";
                listEmpleados.Add(e);
            }
            dr.Close();
@@ -80,11 +86,12 @@ namespace Dao
                e.nombreCargo = dr["car"].ToString();
                e.puede_realizar_pedidos = bool.Parse(dr["puede_realizar_pedidos"].ToString());
                if (e.puede_realizar_pedidos)
-                   e.nombrePedido= "Si";
+                   e.nombrePedido = "Si";
                else
                    e.nombrePedido = "No";
                listEmpleados.Add(e);
            }
+           
            dr.Close();
            cn.Close();
 

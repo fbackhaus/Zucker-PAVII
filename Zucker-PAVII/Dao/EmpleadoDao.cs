@@ -112,7 +112,6 @@ namespace Dao
                                         nro_cuenta = @Nro_cuenta,
                                         puede_realizar_pedidos = @Puede_realizar_pedidos,
                                         where id_empleado = @Id_Empleado";
-            cmd.Parameters.AddWithValue("@Id_Golosina", empleado.id_empleado);
             cmd.Parameters.AddWithValue("@Nombre", empleado.nombre);
             cmd.Parameters.AddWithValue("@Apellido", empleado.apellido);
             cmd.Parameters.AddWithValue("@Fecha_namicmiento",empleado.fechaNacimiento);
@@ -120,10 +119,51 @@ namespace Dao
             cmd.Parameters.AddWithValue("@Id_cargo", empleado.id_cargo);
             cmd.Parameters.AddWithValue("@nro_cuenta", empleado.num_cuenta);
             cmd.Parameters.AddWithValue("@Puede_realizar_pedidos", empleado.puede_realizar_pedidos);
+            cmd.Parameters.AddWithValue(@"Id_Empleado", empleado.id_empleado);
             
 
             cmd.ExecuteNonQuery();
 
+            cn.Close();
+        }
+
+        public static Empleado obtenerPorId(int id)
+        {
+            Empleado e = null;
+            SqlConnection cn = new SqlConnection(@"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True");
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"Select id_empleado, nombre, apellido, fecha_nacimiento, dni, id_cargo, nro_cuenta,
+                                 puede_realizar_pedidos FROM Empleado Where id_empleado = @id_emp";
+            cmd.Parameters.AddWithValue("@id_emp", id);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                e = new Empleado();
+                e.id_empleado= int.Parse(dr["id_empleado"].ToString());
+                e.nombre = dr["nombre"].ToString();
+                e.apellido = dr["apellido"].ToString();
+                e.fechaNacimiento= DateTime.Parse(dr["fecha_nacimiento"].ToString());
+                e.dni= int.Parse(dr["dni"].ToString());
+                e.id_cargo= int.Parse(dr["id_cargo"].ToString());
+                e.num_cuenta= int.Parse(dr["nro_cuenta"].ToString());
+                e.puede_realizar_pedidos = bool.Parse(dr["puede_realizar_pedidos"].ToString());
+                
+            }
+            return e;
+        }
+
+        public static void eliminar(int id)
+        {
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = "Delete FROM Empleado Where id_empleado = @idemp";
+            cmd.Parameters.AddWithValue("@idemp", id);
+            cmd.ExecuteNonQuery();
             cn.Close();
         }
 
