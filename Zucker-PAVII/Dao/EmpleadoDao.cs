@@ -15,7 +15,7 @@ namespace Dao
         {
             //1. Abro la Conexion
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             //2.Creo el objeto command
             SqlCommand cmd = new SqlCommand();
@@ -52,7 +52,7 @@ namespace Dao
         public static int UltimoIDPrimero()
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -69,7 +69,7 @@ namespace Dao
         public static void actualizarID(int id_empl)
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -83,7 +83,7 @@ namespace Dao
         {
 
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -99,7 +99,7 @@ namespace Dao
         {
             //1. Abro la Conexion
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             //2.Creo el objeto command
             SqlCommand cmd = new SqlCommand();

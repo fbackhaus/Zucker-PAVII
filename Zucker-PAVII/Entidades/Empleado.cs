@@ -27,8 +27,6 @@ namespace Entidades
             this.fechaNacimiento= fechaNacimiento;
             this.dni = dni;
             this.puede_realizar_pedidos = puede_realizar_pedidos;
-            
-
         }
 
          public Empleado() { }
