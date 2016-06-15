@@ -18,7 +18,7 @@
             <asp:DropDownList AutoPostBack="true" OnSelectedIndexChanged="ddlEsPropia_SelectedIndexChanged" runat="server" ID="ddlEsPropia" CssClass="form-control" />
     </div>
     <div class="form-group" id="divGrilla" runat="server">
-        <asp:GridView ID="gvGolosinas" AutoGenerateColumns="False" runat="server" CssClass="table table-striped table-bordered table-condensed">
+        <asp:GridView ID="gvGolosinas" AutoGenerateColumns="False" runat="server" HeaderStyle-BackColor="LightGray" CssClass="table table-hover table-bordered table-condensed" BackColor="White">
             <Columns>
                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                 <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
