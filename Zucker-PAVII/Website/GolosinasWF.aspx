@@ -59,8 +59,13 @@
     </div>
     <div class="form-group" style="text-align:center">
     <asp:Button ID="btnGuardar" runat="server" Text="Guardar" class="btn btn-success" OnClick="btnGuardar_Click" ValidationGroup="A"/>
-    <asp:Button ID="btnNuevo" runat="server" text="Nuevo" CssClass="btn btn-default" OnClick="btnNuevo_Click" ValidationGroup="B" OnClientClick="return confirm('Esta seguro que desea eliminar la golosina?');"/>
-    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" ValidationGroup="A" />
+    <asp:Button ID="btnNuevo" runat="server" text="Nuevo" CssClass="btn btn-default" OnClick="btnNuevo_Click" ValidationGroup="B" />
+    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" ValidationGroup="A" OnClientClick="return confirm('Esta seguro que desea eliminar la golosina?');" />
+    </div>
+        <div class="form-group">
+        <label for="txtGolABuscar">Nombre de La Golosina:</label>
+        <asp:TextBox runat="server" ID="txtGolABuscar" CssClass="form-control" placeholder="Ingrese Nombre de la Golosina"></asp:TextBox>
+        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-default" OnClick="btnBuscar_Click" />
     </div>
     <div class="grid" id="divGrilla" runat="server">
         <asp:GridView ID="gvGolosinas" AutoGenerateColumns="False" runat="server" HeaderStyle-BackColor="LightGray" CssClass="table table-hover table-bordered table-condensed" BackColor="White" OnSelectedIndexChanged="gvGolosinas_SelectedIndexChanged">

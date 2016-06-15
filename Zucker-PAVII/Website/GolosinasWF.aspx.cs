@@ -11,6 +11,25 @@ public partial class GolosinasWF : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+    
+        List<string> roles = (List<string>)Session["Roles"];
+        bool acceso = false;
+        foreach (string rol in roles)
+        {
+            if (rol == "Administrador")
+            {
+                acceso = true;
+                break;
+            }
+        }
+        if (!acceso) Response.Redirect("LoginWF.aspx");
+
+        if (Session["Usuario"] == string.Empty)
+        {
+            //Usuario Anónimo
+            Response.Redirect("Login.aspx");
+        }
+     
         if(!IsPostBack)
         {
             btnEliminar.Enabled = false;
@@ -137,5 +156,14 @@ public partial class GolosinasWF : System.Web.UI.Page
 
         gvGolosinas.DataKeyNames = new String[] { "id_golosina" };
         gvGolosinas.DataBind();
+    }
+    protected void btnBuscar_Click(object sender, EventArgs e)
+    {
+        gvGolosinas.DataSource = from gol in GolosinaQueryDao.ObtenerPorNombre(txtGolABuscar.Text)
+                                 orderby gol.id_golosina
+                                 select gol;
+        gvGolosinas.DataKeyNames = new string[] { "id_golosina" };
+        gvGolosinas.DataBind();
+
     }
 }
