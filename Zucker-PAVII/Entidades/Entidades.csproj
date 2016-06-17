@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cliente.cs" />
+    <Compile Include="ClienteQuery.cs" />
     <Compile Include="Empleado.cs" />
     <Compile Include="EmpleadoQuery.cs" />
     <Compile Include="Golosina.cs" />

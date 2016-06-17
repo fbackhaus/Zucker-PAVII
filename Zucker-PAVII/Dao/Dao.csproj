@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClienteDao.cs" />
+    <Compile Include="ClienteQueryDao.cs" />
     <Compile Include="EmpleadoDao.cs" />
     <Compile Include="EmpleadoQueryDao.cs" />
     <Compile Include="GolosinaDao.cs" />

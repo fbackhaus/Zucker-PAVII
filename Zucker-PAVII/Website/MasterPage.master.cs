@@ -9,6 +9,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        mnuListadoEmpleados.Visible = !string.IsNullOrEmpty(Session["Usuario"].ToString());
+        mnuListadoClientes.Visible = !string.IsNullOrEmpty(Session["Usuario"].ToString());
         mnuListadoGolosinas.Visible = !string.IsNullOrEmpty(Session["Usuario"].ToString());
         mnuLogout.Visible = !string.IsNullOrEmpty(Session["Usuario"].ToString());
         mnuLogin.Visible = string.IsNullOrEmpty(Session["Usuario"].ToString());

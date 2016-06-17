@@ -9,13 +9,13 @@ using System.Data;
 
 namespace Dao
 {
-   public class EmpleadoDao
+    public class EmpleadoDao
     {
         public static void Insertar(Empleado empleado)
         {
             //1. Abro la Conexion
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             //2.Creo el objeto command
             SqlCommand cmd = new SqlCommand();
@@ -34,7 +34,7 @@ namespace Dao
                                                     @Nro_cuenta,
                                                     @Id_Cargo,
                                                     @Puede_realizar_pedidos) ; select Scope_Identity() as ID";
-        //  cmd.Parameters.AddWithValue("@Id_Empleado", empleado.id_empleado);
+            //  cmd.Parameters.AddWithValue("@Id_Empleado", empleado.id_empleado);
             cmd.Parameters.AddWithValue("@Nombre", empleado.nombre);
             cmd.Parameters.AddWithValue("@Apellido", empleado.apellido);
             cmd.Parameters.AddWithValue("@Fecha_nacimiento", empleado.fechaNacimiento);
@@ -42,48 +42,35 @@ namespace Dao
             cmd.Parameters.AddWithValue("@Nro_cuenta", empleado.num_cuenta);
             cmd.Parameters.AddWithValue("@Id_Cargo", empleado.id_cargo);
             cmd.Parameters.AddWithValue("@Puede_realizar_pedidos", empleado.puede_realizar_pedidos);
-            
+
             cmd.ExecuteNonQuery();
 
             cn.Close();
         }
 
 
-        public static int UltimoIDPrimero()
+        public static int UltimoID()
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
             cmd.CommandText = "SELECT ISNULL(MAX(id_empleado), 0) AS ID FROM Empleado";
             int r = Convert.ToInt32(cmd.ExecuteScalar());
             cn.Close();
-            
-            return r+1;
+
+            return r + 1;
         }
 
-     
 
 
-        public static void actualizarID(int id_empl)
-        {
-            SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
-            cn.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = cn;
-            cmd.CommandText = "Update id_empleado set id = @id_empl";
-            cmd.Parameters.AddWithValue("@id_gol", id_empl);
-            cmd.ExecuteNonQuery();
-            cn.Close();
-        }
 
         public static DataSet leerBD(string consulta)
         {
 
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -99,7 +86,7 @@ namespace Dao
         {
             //1. Abro la Conexion
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             //2.Creo el objeto command
             SqlCommand cmd = new SqlCommand();
@@ -110,24 +97,67 @@ namespace Dao
                                         dni = @DNI,
                                         id_cargo = @Id_cargo,
                                         nro_cuenta = @Nro_cuenta,
-                                        puede_realizar_pedidos = @Puede_realizar_pedidos,
+                                        puede_realizar_pedidos = @Puede_realizar_pedidos
                                         where id_empleado = @Id_Empleado";
-            cmd.Parameters.AddWithValue("@Id_Golosina", empleado.id_empleado);
+            cmd.Parameters.AddWithValue("@Id_Empleado", empleado.id_empleado);
             cmd.Parameters.AddWithValue("@Nombre", empleado.nombre);
             cmd.Parameters.AddWithValue("@Apellido", empleado.apellido);
-            cmd.Parameters.AddWithValue("@Fecha_namicmiento",empleado.fechaNacimiento);
+            cmd.Parameters.AddWithValue("@Fecha_nacimiento", empleado.fechaNacimiento);
             cmd.Parameters.AddWithValue("@DNI", empleado.dni);
             cmd.Parameters.AddWithValue("@Id_cargo", empleado.id_cargo);
-            cmd.Parameters.AddWithValue("@nro_cuenta", empleado.num_cuenta);
+            cmd.Parameters.AddWithValue("@Nro_cuenta", empleado.num_cuenta);
             cmd.Parameters.AddWithValue("@Puede_realizar_pedidos", empleado.puede_realizar_pedidos);
-            
+
 
             cmd.ExecuteNonQuery();
 
             cn.Close();
         }
 
-       
+        public static void eliminar(int id)
+        {
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = "Delete FROM Empleado Where id_empleado = @idemp";
+            cmd.Parameters.AddWithValue("@idemp", id);
+            cmd.ExecuteNonQuery();
+            cn.Close();
+        }
+
+        public static Empleado obtenerPorId(int id)
+        {
+            Empleado g = null;
+            SqlConnection cn = new SqlConnection(@"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True");
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"Select id_empleado, nombre, apellido , fecha_nacimiento, dni, id_cargo, nro_cuenta,
+                                 puede_realizar_pedidos FROM Empleado Where id_empleado = @id_emp";
+            cmd.Parameters.AddWithValue("@id_emp", id);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                g = new Empleado();
+                g.id_empleado = int.Parse(dr["id_empleado"].ToString());
+                g.nombre = dr["nombre"].ToString();
+                g.apellido = dr["apellido"].ToString();
+                g.fechaNacimiento = DateTime.Parse(dr["fecha_nacimiento"].ToString());
+                g.dni = int.Parse(dr["dni"].ToString());
+                g.id_cargo = int.Parse(dr["id_cargo"].ToString());
+                g.num_cuenta = int.Parse(dr["nro_cuenta"].ToString());
+                g.puede_realizar_pedidos = bool.Parse(dr["puede_realizar_pedidos"].ToString());
+
+            }
+            return g;
+        }
+
+
+
+
+
 
     }
 }

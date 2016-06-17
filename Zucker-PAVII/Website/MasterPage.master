@@ -29,10 +29,12 @@
     <ul class="nav navbar-nav">
       <li ><a runat="server" id="mnuGolosinas" href="/GolosinasWF.aspx">Nueva Golosina</a></li>
       <li ><a runat="server" id="mnuListadoGolosinas" href="/ListadoGolosinasWF.aspx">Listado de Golosinas</a></li>
-      <li ><a runat="server" id="mnuEmpleados" href="EmpleadosWF.aspx">Nuevo Empleado</a></li>
+      <li ><a runat="server" id="mnuEmpleados" href="/EmpleadosWF.aspx">Nuevo Empleado</a></li>
+      <li ><a runat="server" id="mnuListadoEmpleados" href="/ListadoDeEmpleados.aspx">Listado de Empleados</a></li>
+      <li><a runat="server" id="mnuListadoClientes" href="/ListadoClienteWF.aspx">Listado de Clientes Cliente</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Registrarse</a></li>
+      <li><a href="/ClienteWF.aspx"><span class="glyphicon glyphicon-user"></span> Registrarse</a></li>
       <li><a runat="server" id="mnuLogin" href="/Login.aspx"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         <li><a runat="server" id="mnuLogout" href="/Logout.aspx"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
     </ul>

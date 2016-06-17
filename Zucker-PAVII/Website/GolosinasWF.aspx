@@ -39,7 +39,7 @@
         <asp:TextBox runat="server" ID="txtStock" TextMode="Number" CssClass="form-control" placeholder="Ingrese stock"></asp:TextBox>
         <asp:RequiredFieldValidator ID="rfvStock" ControlToValidate="txtStock" runat="server"
             ErrorMessage="Por favor ingrese el stock inicial" Text="*" ValidationGroup="A" ></asp:RequiredFieldValidator>
-        <asp:CompareValidator ID="cvStock" ErrorMessage="El stock ingresado es invalido" Text="*" ValidationGroup="A" runat="server" ControlToValidate="txtStock" Operator="GreaterThanEqual" ValueToCompare="0"></asp:CompareValidator>
+        <asp:RangeValidator ID="rvStock" ErrorMessage="El stock ingresado es invalido" Text="*" ValidationGroup="A" runat="server" ControlToValidate="txtStock" MinimumValue="0" MaximumValue="1000000000"></asp:RangeValidator>
     </div>
     <div class="form-group">
         <label for="txtPrecioVta">Precio de Venta</label>
