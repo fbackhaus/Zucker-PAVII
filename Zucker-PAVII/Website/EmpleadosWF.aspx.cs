@@ -62,7 +62,7 @@ public partial class EmpleadosWF : System.Web.UI.Page
             //    emp.id_empleado = id_emp;
             //}
 
-            emp.id_empleado = ID.Value ;
+           // emp.id_empleado = ID.Value ;
             emp.nombre = txtNombre.Text;
             emp.apellido = txtApellido.Text;
             emp.fechaNacimiento = Convert.ToDateTime(txtFechaNac.Text);
