@@ -1,62 +1,75 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage.master" CodeFile="LoteDeProduccionWF.aspx.cs" Inherits="LoteDeProduccionWF" %>
 
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-    <title>Registrar Lote de Produccion</title>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderPrincipal" Runat="Server">
-    <h1 style="text-align: center">Registro de Empleados</h1>
-     
+    <h1 style="text-align: center; color:black;">Nuevo lote de producción</h1>
+
     <div class="form-group">
-        <label for="txtNumero">Numero de Lote</label>
-        <asp:TextBox runat="server" ID="txtNumero" CssClass="form-control" placeholder="Ingrese numero de lote de produccion"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="rfvNumero" ControlToValidate="txtNumero" runat="server"
-            ErrorMessage="Por favor ingrese el numero de lote de produccion" Text="*" ValidationGroup="A" ></asp:RequiredFieldValidator>
-    </div>
-     
-     <div class="form-group">
-        <label for="txtFecha">Fecha de nacimiento</label>
-        <asp:TextBox runat="server" ID="txtFecha" TextMode="Date" CssClass="form-control" placeholder="Ingrese la fecha de produccion"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="rfvFecha" ControlToValidate="txtFecha" runat="server"
-            ErrorMessage="Por favor ingrese la fecha de produccion" Text="*" ValidationGroup="A" ></asp:RequiredFieldValidator>
-
-    </div>
-    
-     <div class="form-group">
-        <label for="ddlEmpleado">Cargo</label>
-     <asp:DropDownList runat="server" ID="ddlEmpleado" OnSelectedIndexChanged="ddlEmpleado_SelectedIndexChanged" CssClass="form-control" ></asp:DropDownList>
-       </div>
-     
-   
-      <div class="form-group">
-        <asp:ValidationSummary ID="valResumen"
-            runat="server" ValidationGroup="A" />
+        <label for="txtNumLote">N° Lote</label>
+        <asp:TextBox ID="txtNumLote" TextMode="Number" runat="server" CssClass="form-control"></asp:TextBox>
     </div>
 
-     <div class="form-group" style="text-align:center">
-    <asp:Button ID="btnGuardar" runat="server" Text="Guardar" class="btn btn-success" OnClick="btnGuardar_Click" ValidationGroup="A" />
-    <asp:Button ID="btnNuevo" runat="server" text="Nuevo" CssClass="btn btn-default" OnClick="btnNuevo_Click" ValidationGroup="B" />
-    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" ValidationGroup="A" />
+    <div class="form-group">
+        <label for="txtFecha">Fecha de Producción</label>
+        <asp:TextBox ID="txtFecha" TextMode="Date" runat="server" CssClass="form-control"></asp:TextBox>
     </div>
 
-   <div class="form-group" id="divGrilla" runat="server">
-        
-        <asp:GridView ID="gvLotes" AutoGenerateColumns="False" runat="server" OnSelectedIndexChanged="gvLotes_SelectedIndexChanged" CssClass="table table-striped table-bordered table-condensed">
+    <div class="form-group">
+        <label for="txtGolosina">Buscar golosina:</label>
+        <asp:TextBox runat="server" ID="txtBuscar" CssClass="form-control" placeholder="Ingrese Nombre de la Golosina"></asp:TextBox>
+        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-warning" OnClick="btnBuscar_Click" />
+        <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar" CssClass="btn btn-default" OnClick="btnLimpiar_Click" />
+        <asp:Label ID="lblNoEncontrada" Text="No se Encontro la golosina buscada" runat="server" Visible="false"></asp:Label>
+        <h3 style="text-align:center; color:black">Golosinas propias: </h3>
+
+
+        <asp:GridView runat="server" ID="gvGolosinas" AutoGenerateColumns="false" HeaderStyle-BackColor="LightGray" CssClass="table table-hover table-bordered table-condensed" BackColor="White" OnRowDataBound="gvGolosinas_RowDataBound" OnSelectedIndexChanged="gvGolosinas_SelectedIndexChanged">
             <Columns>
-                <asp:CommandField SelectText="Seleccionar" ShowSelectButton="true" />
-                <asp:BoundField DataField="Numero" HeaderText="Codigo de Lote" />
-                <asp:BoundField DataField="Fecha" HeaderText="Fecha de Produccion" />
-                <asp:BoundField DataField="Empleado" HeaderText="Empleado" />
-               
+                <asp:CommandField ButtonType="Button" ControlStyle-CssClass="btn btn-success" SelectText="Agregar" ShowSelectButton="true"/>
+                <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
+                <asp:BoundField DataField="NombreMarca" HeaderText="Marca" />
+                <asp:BoundField DataField="Stock" HeaderText="Stock Actual" />
+                <asp:BoundField DataField="NombreTipoGolosina" HeaderText="Tipo de Golosina" />
+                <asp:BoundField DataField="Precio_Vta" HeaderText="Precio de Venta" />
+                <asp:BoundField DataField="NombreEsPropia" HeaderText="Es Propia?" />
+                <asp:BoundField DataField="Codigo_Producto" HeaderText="Codigo del Producto" />
+                <asp:TemplateField HeaderText="Cantidad" >
+                    <ItemTemplate>
+                     <asp:DropDownList runat="server" ID="ddlCantidad" CssClass="form-control" OnSelectedIndexChanged="ddlCantidad_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                    </ItemTemplate>
+                </asp:TemplateField>   
             </Columns>
         </asp:GridView>
+        
+     
+    </div>
 
-        </div>
-    <div class="form-group" id="divExcepcion" runat="server" visible="false">
-                        <label for="txtExcepcion">Por favor revise lo siguiente: </label>
-                        <asp:TextBox TextMode="MultiLine" runat="server" ID="txtExcepcion" CssClass="form-control"></asp:TextBox>
-                    </div>
+    <div class="form-group">
+        <h3 id="tituloMP" runat="server" visible="false" style="text-align:center; color:black">Golosinas a cargar</h3>
+        <asp:GridView runat="server" ID="gvACargar" AutoGenerateColumns="false" HeaderStyle-BackColor="LightGray" CssClass="table table-hover table-bordered table-condensed" BackColor="White"  OnSelectedIndexChanged="gvACargar_SelectedIndexChanged" >
+            <Columns>
+            <asp:CommandField ButtonType="Button" ControlStyle-CssClass="btn btn-danger" SelectText="Quitar" ShowSelectButton="true" />
+                <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
+                <asp:BoundField DataField="NombreMarca" HeaderText="Marca" />
+                <asp:BoundField DataField="NombreTipoGolosina" HeaderText="Tipo de Golosina" />
+                <asp:BoundField DataField="Precio_Vta" HeaderText="Precio de Venta" />
+                <asp:BoundField DataField="NombreEsPropia" HeaderText="Es Propia?" />
+                <asp:BoundField DataField="Codigo_Producto" HeaderText="Codigo del Producto" />
+                <asp:BoundField DataField="Stock" HeaderText="Stock Futuro" />
+                <asp:BoundField DataField="cantidad" HeaderText="Cantidad" />
+            </Columns>
+        </asp:GridView>
+        
+    </div>
+    <div class="form-group" style="text-align:center">
+        <asp:Button runat="server" ID="btnConfirmar" OnClick="btnConfirmar_Click" Text="Confirmar" CssClass="btn btn-success"/>
+        <asp:Button ID="btnNuevo" runat="server" text="Nuevo" CssClass="btn btn-default" OnClick="btnNuevo_Click" />
+    </div>
 
- 
-    </asp:Content>
+  </asp:Content>
+
+   

@@ -11,7 +11,7 @@ namespace Dao
 {
     public class ClienteQueryDao
     {
-        static string cadena_de_conexion = @"Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
+        static string cadena_de_conexion = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
 
         public static List<ClienteQuery> Select()
         {

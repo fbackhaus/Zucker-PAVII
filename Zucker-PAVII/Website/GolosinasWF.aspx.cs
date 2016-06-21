@@ -154,11 +154,11 @@ public partial class GolosinasWF : System.Web.UI.Page
     }
     protected void btnBuscar_Click(object sender, EventArgs e)
     {
-        gvGolosinas.DataSource = from gol in GolosinaQueryDao.ObtenerPorNombre(txtGolABuscar.Text)
-                                 orderby gol.id_golosina
-                                 select gol;
-        gvGolosinas.DataKeyNames = new string[] { "id_golosina" };
-        gvGolosinas.DataBind();
+        //gvGolosinas.DataSource = from gol in GolosinaQueryDao.ObtenerPorNombre(txtGolABuscar.Text)
+        //                         orderby gol.id_golosina
+        //                         select gol;
+        //gvGolosinas.DataKeyNames = new string[] { "id_golosina" };
+        //gvGolosinas.DataBind();
 
     }
 }
