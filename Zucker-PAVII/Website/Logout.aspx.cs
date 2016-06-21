@@ -10,6 +10,8 @@ public partial class Logout : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         Session["Usuario"] = string.Empty;
+        Session["Cliente"] = null;
+        Session["Empleado"] = null;
         Response.Redirect("Login.aspx");
     }
 }

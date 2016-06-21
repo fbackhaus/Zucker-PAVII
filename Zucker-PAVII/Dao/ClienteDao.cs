@@ -11,7 +11,7 @@ namespace Dao
 {
     public class ClienteDao
     {
-        static string cadena_de_conexion = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+        static string cadena_de_conexion = @"Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
         static string tablas = "id_cliente, cuit, razon_social, fecha_fundacion, email, telefono, calle, numero, piso, dpto, id_localidad, codigo_postal, nro_cuenta, es_primera_vez";
         static string valoresParametros = "@id_cliente, @cuit,@razon_social,@fecha_fundacion,@email,@telefono, @calle,@numero,@piso,@dpto,@id_localidad,@codigo_postal,@nro_cuenta,@es_primera_vez";
         
@@ -181,6 +181,45 @@ namespace Dao
             dr.Close();
             cn.Close();
             return lista;
+        }
+
+        public static Cliente getCliente(string usuario, string clave)
+        {
+            Cliente c = null;
+            SqlConnection cn = new SqlConnection();
+            cn.ConnectionString = @"Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = @"Select c.id_cliente, c.cuit, c.razon_social, c.fecha_fundacion, c.email, c.telefono, c.calle,
+                                c.numero, c.piso, c.dpto, c.id_localidad, c.codigo_postal, c.nro_cuenta, c.es_primera_vez
+                                FROM Cliente c INNER JOIN Cuenta cu ON c.nro_cuenta = cu.nro_cuenta 
+                                WHERE cu.usuario = @Usuario AND cu.contraseña = @Clave";
+            cmd.Parameters.AddWithValue("@Usuario", usuario);
+            cmd.Parameters.AddWithValue("@Clave", clave);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                c = new Cliente();
+                c.id_cliente = int.Parse(dr["id_cliente"].ToString());
+                c.cuit = (dr["cuit"].ToString());
+                c.razon_social = (dr["razon_social"].ToString());
+                c.fecha_fundacion = DateTime.Parse(dr["fecha_fundacion"].ToString());
+                c.email = (dr["email"].ToString());
+                c.telefono = (dr["telefono"].ToString());
+                c.calle = (dr["calle"].ToString());
+                c.numero = int.Parse(dr["numero"].ToString());
+                //c.piso = int.Parse(dr["piso"].ToString());
+                //c.dpto = (dr["dpto"].ToString());
+                c.id_localidad = int.Parse(dr["id_localidad"].ToString());
+                c.codigo_postal = int.Parse(dr["codigo_postal"].ToString());
+                c.nro_cuenta = int.Parse(dr["nro_cuenta"].ToString());
+                c.es_primera_vez = bool.Parse(dr["es_primera_vez"].ToString());
+            }
+
+            dr.Close();
+            cn.Close();
+            return c;
         }
     }
 }

@@ -22,7 +22,7 @@ public partial class GolosinasWF : System.Web.UI.Page
                 break;
             }
         }
-        if (!acceso) Response.Redirect("LoginWF.aspx");
+        if (!acceso) Response.Redirect("Login.aspx");
 
         if (Session["Usuario"] == string.Empty)
         {
