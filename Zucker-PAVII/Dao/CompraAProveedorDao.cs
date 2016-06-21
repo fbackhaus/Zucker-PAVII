@@ -50,7 +50,7 @@ namespace Dao
             if (nombreMP != string.Empty)
             {
                 cmd.CommandText += "AND mp.nombre like @nombreMP ";
-                cmd.Parameters.AddWithValue("@nombreMP", nombreMP + "%");
+                cmd.Parameters.AddWithValue("@nombreMP","%" + nombreMP + "%");
             }
 
             SqlDataReader dr = cmd.ExecuteReader();

@@ -10,8 +10,21 @@ using Dao;
 
 public partial class ListadoClienteWF : System.Web.UI.Page
 {
+    
     protected void Page_Load(object sender, EventArgs e)
     {
+        bool acceso = false;
+        if (Session["Empleado"] != null)
+        {
+            acceso = true;
+        }
+        if (!acceso) Response.Redirect("Login.aspx");
+
+        if (Session["Usuario"] == string.Empty)
+        {
+            //Usuario Anónimo
+            Response.Redirect("Login.aspx");
+        }
         if (!Page.IsPostBack)
         {
             cargarDdlLocalidad();

@@ -12,15 +12,10 @@ public partial class GolosinasWF : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
     
-        List<string> roles = (List<string>)Session["Roles"];
         bool acceso = false;
-        foreach (string rol in roles)
+        if (Session["Empleado"] != null)
         {
-            if (rol == "Administrador")
-            {
-                acceso = true;
-                break;
-            }
+            acceso = true;            
         }
         if (!acceso) Response.Redirect("Login.aspx");
 

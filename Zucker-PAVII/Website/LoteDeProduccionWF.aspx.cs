@@ -11,7 +11,18 @@ public partial class LoteDeProduccionWF : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        bool acceso = false;
+        if (Session["Empleado"] != null)
+        {
+            acceso = true;
+        }
+        if (!acceso) Response.Redirect("Login.aspx");
 
+        if (Session["Usuario"] == string.Empty)
+        {
+            //Usuario Anónimo
+            Response.Redirect("Login.aspx");
+        }
     }
   
     protected void btnGuardar_Click(object sender, EventArgs e)

@@ -17,6 +17,13 @@
         <label for="ddlPropia">Es Propia?</label>
             <asp:DropDownList AutoPostBack="true" OnSelectedIndexChanged="ddlEsPropia_SelectedIndexChanged" runat="server" ID="ddlEsPropia" CssClass="form-control" />
     </div>
+    <div class="form-group">
+        <label for="txtGolABuscar">Nombre de La Golosina:</label>
+        <asp:TextBox runat="server" ID="txtGolABuscar" CssClass="form-control" placeholder="Ingrese Nombre de la Golosina"></asp:TextBox>
+        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-warning" OnClick="btnBuscar_Click" />
+        <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar" CssClass="btn btn-default" OnClick="btnLimpiar_Click"  />
+        <asp:Label ID="lblGolNoEncontrada" Text="No se Encontro la Golosina Buscada" runat="server" Visible="false"></asp:Label>
+    </div>
     <div class="form-group" id="divGrilla" runat="server">
         <asp:GridView ID="gvGolosinas" AutoGenerateColumns="False" runat="server" HeaderStyle-BackColor="LightGray" CssClass="table table-hover table-bordered table-condensed" BackColor="White">
             <Columns>

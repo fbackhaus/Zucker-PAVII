@@ -9,14 +9,27 @@ using Dao;
 
 public partial class ListadoGolosinasWF : System.Web.UI.Page
 {
+
     protected void Page_Load(object sender, EventArgs e)
     {
+        bool acceso = false;
+        if (Session["Empleado"] != null)
+        {
+            acceso = true;
+        }
+        if (!acceso) Response.Redirect("Login.aspx");
+
+        if (Session["Usuario"] == string.Empty)
+        {
+            //Usuario Anónimo
+            Response.Redirect("Login.aspx");
+        }
         if(!Page.IsPostBack)
         {
             cargarDDLMarca();
             cargarDDLTipoGolosina();
             cargarDDLEsPropia();
-            CargarGrilla(null, null, null);
+            CargarGrilla(null, null, null, String.Empty);
         }
     }
 
@@ -40,9 +53,13 @@ public partial class ListadoGolosinasWF : System.Web.UI.Page
         ddlMarca.Items.Insert(0, new ListItem("Todas", "0"));
     }
 
-    protected void CargarGrilla(int? idMarca, bool? esPropia, int? idTipo)
+    protected void CargarGrilla(int? idMarca, bool? esPropia, int? idTipo, string nombreMP)
     {
-        gvGolosinas.DataSource = from gol in GolosinaQueryDao.ObtenerConFiltros(idMarca, esPropia, idTipo)
+        if(GolosinaQueryDao.ObtenerConFiltros(idMarca, esPropia, idTipo, nombreMP).Count == 0)
+        {
+            lblGolNoEncontrada.Visible = true;
+        }
+        gvGolosinas.DataSource = from gol in GolosinaQueryDao.ObtenerConFiltros(idMarca, esPropia, idTipo, nombreMP)
                                  orderby gol.id_golosina
                                  select gol;
 
@@ -52,12 +69,12 @@ public partial class ListadoGolosinasWF : System.Web.UI.Page
     protected void ddlTipo_SelectedIndexChanged(object sender, EventArgs e)
     {
         IDTipo = ddlTipo.SelectedIndex;
-        CargarGrilla(IDMarca, esPropia, IDTipo);
+        CargarGrilla(IDMarca, esPropia, IDTipo, nombreMP);
     }
     protected void ddlMarca_SelectedIndexChanged(object sender, EventArgs e)
     {
         IDMarca = ddlMarca.SelectedIndex;
-        CargarGrilla(IDMarca, esPropia, IDTipo);
+        CargarGrilla(IDMarca, esPropia, IDTipo, nombreMP);
     }
 
     protected int? IDTipo
@@ -120,10 +137,34 @@ public partial class ListadoGolosinasWF : System.Web.UI.Page
         {
             esPropia = null;
         }
-        CargarGrilla(IDMarca, esPropia, IDTipo);
+        CargarGrilla(IDMarca, esPropia, IDTipo, nombreMP);
     }
 
-    
 
 
+
+    protected void btnBuscar_Click(object sender, EventArgs e)
+    {
+        nombreMP = txtGolABuscar.Text;
+        CargarGrilla(IDMarca, esPropia, IDTipo, nombreMP);
+    }
+
+    protected string nombreMP
+    {
+        get
+        {
+            if (ViewState["NombreMP"] == null)
+                ViewState["NombreMP"] = String.Empty;
+
+            return ViewState["NombreMP"].ToString();
+        }
+        set { ViewState["NombreMP"] = value; }
+    }
+    protected void btnLimpiar_Click(object sender, EventArgs e)
+    {
+        txtGolABuscar.Text = String.Empty;
+        nombreMP = string.Empty;
+        CargarGrilla(IDMarca, esPropia, IDTipo, nombreMP);
+        lblGolNoEncontrada.Visible = false;
+    }
 }

@@ -15,7 +15,7 @@
     <div class="form-group">
         <label for="txtMPABuscar">Nombre de La Materia Prima:</label>
         <asp:TextBox runat="server" ID="txtMPABuscar" CssClass="form-control" placeholder="Ingrese Nombre de la Materia Prima"></asp:TextBox>
-        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-default" OnClick="btnBuscar_Click" />
+        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" class="btn btn-warning" OnClick="btnBuscar_Click" />
         <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar" CssClass="btn btn-default" OnClick="btnLimpiar_Click" />
         <asp:Label ID="lblMPNoEncontrada" Text="No se Encontro la Materia Prima Buscada" runat="server" Visible="false"></asp:Label>
         <h3 style="text-align:center; color:black">Materias Primas del Proveedor</h3>

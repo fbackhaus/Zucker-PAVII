@@ -11,6 +11,7 @@ public partial class ClienteWF : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+
         if (!IsPostBack)
         {
             btmEliminar.Enabled = false;

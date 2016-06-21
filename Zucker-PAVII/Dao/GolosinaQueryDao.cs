@@ -44,7 +44,7 @@ namespace Dao
             return listGolosinas;
         }
 
-     public static List<GolosinaQuery> ObtenerConFiltros(int? idMarca, bool? esPropia, int? idTipo)
+     public static List<GolosinaQuery> ObtenerConFiltros(int? idMarca, bool? esPropia, int? idTipo, string nombre)
         {
             List<GolosinaQuery> listGolosinas = new List<GolosinaQuery>();
             GolosinaQuery g = null;
@@ -72,6 +72,11 @@ namespace Dao
             {
                 cmd.CommandText += " AND g.es_propia = @EsPropia";
                 cmd.Parameters.AddWithValue("@EsPropia", esPropia);
+            }
+            if(nombre != string.Empty)
+            {
+                cmd.CommandText += " AND g.nombre like @nombreGol ";
+                cmd.Parameters.AddWithValue("@nombreGol","%" + nombre + "%");
             }
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
