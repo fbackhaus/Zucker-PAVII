@@ -14,7 +14,7 @@ namespace Dao
         public static void Insertar(LoteProduccion lote, List<DetalleProduccion> listaDetalles)
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlTransaction tran = cn.BeginTransaction();
             try
@@ -22,7 +22,7 @@ namespace Dao
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
                 cmd.CommandText = @"Insert into Produccion (id_produccion,fecha_y_hora, id_empleado) 
-                                   values(@Id_produccion, @Fecha,@Id_emp)";
+                                   values(@Id_produccion, @Fecha, @Id_emp)";
                 cmd.Parameters.AddWithValue(@"Id_produccion", lote.codLote);
                 cmd.Parameters.AddWithValue(@"Fecha", lote.fecha);
                 cmd.Parameters.AddWithValue(@"Id_emp", lote.id_empleado);
@@ -36,13 +36,11 @@ namespace Dao
                     detalle.id_produccion= lote.codLote;
                     SqlCommand cmdDet = new SqlCommand();
                     cmdDet.Connection = cn;
-                    cmdDet.CommandText = @" INSERT INTO Detalle_Produccion
-                      (id_produccion, id_detalle, id_golosina, cantidad)
-VALUES     (@Id_produccion,@Id_detalle,@Id_gol,@Cant)";
-                    cmd.Parameters.AddWithValue(@"Id_produccion", detalle.id_produccion);
-                    cmd.Parameters.AddWithValue(@"Id_detalle", detalle.id_detalle);
-                    cmd.Parameters.AddWithValue(@"Id_gol", detalle.id_golosina);
+                    cmdDet.CommandText = "Insert into Detalle_Produccion (id_produccion,id_golosina,cantidad_producida) values (@ID_Prod,@Id_Gol,@Cant)";
+                    cmd.Parameters.AddWithValue(@"ID_Prod", detalle.id_produccion);
+                    cmd.Parameters.AddWithValue(@"Id_Gol", detalle.id_golosina);
                     cmd.Parameters.AddWithValue(@"Cant", detalle.cantidad);
+                    
                     cmdDet.Transaction = tran;
 
                     cmdDet.ExecuteNonQuery();
@@ -70,15 +68,14 @@ VALUES     (@Id_produccion,@Id_detalle,@Id_gol,@Cant)";
         {
             DetalleProduccion detalle = null;
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
-            cmd.CommandText = @"SELECT Golosina.id_golosina, Golosina.nombre,Detalle_Produccion.id_produccion,
-                            Detalle_Produccion.id_detalle
-                            FROM  Golosina INNER JOIN Detalle_Produccion ON 
-                            Golosina.id_golosina = Detalle_Produccion.id_golosina 
-                                WHERE Golosina.id_golosina = @id_gol ";
+            cmd.CommandText = @"SELECT     Detalle_Produccion.id_golosina,Detalle_Produccion.id_detalle ,Detalle_Produccion.id_produccion, Golosina.nombre, Golosina.stock
+                                FROM         Detalle_Produccion INNER JOIN
+                                Golosina ON Detalle_Produccion.id_golosina = Golosina.id_golosina
+                                WHERE Detalle_Produccion.id_golosina = @id_gol";
 
             cmd.Parameters.AddWithValue("@id_gol", id_gol);
 
@@ -102,10 +99,10 @@ VALUES     (@Id_produccion,@Id_detalle,@Id_gol,@Cant)";
             return detalle;
         }
 
-        public static int ultimoIDCompra()
+        public static int ultimoIDLote()
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -118,7 +115,7 @@ VALUES     (@Id_produccion,@Id_detalle,@Id_gol,@Cant)";
         public static int ultimoIDDetalle()
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -132,7 +129,7 @@ VALUES     (@Id_produccion,@Id_detalle,@Id_gol,@Cant)";
         public static void ActualizarStock(DetalleProduccion detalle)
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;

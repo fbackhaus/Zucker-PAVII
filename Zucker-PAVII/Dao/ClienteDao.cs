@@ -11,7 +11,7 @@ namespace Dao
 {
     public class ClienteDao
     {
-        static string cadena_de_conexion = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+        static string cadena_de_conexion = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
         static string tablas = "id_cliente, cuit, razon_social, fecha_fundacion, email, telefono, calle, numero, piso, dpto, id_localidad, codigo_postal, nro_cuenta, es_primera_vez";
         static string valoresParametros = "@id_cliente, @cuit,@razon_social,@fecha_fundacion,@email,@telefono, @calle,@numero,@piso,@dpto,@id_localidad,@codigo_postal,@nro_cuenta,@es_primera_vez";
         
@@ -187,7 +187,7 @@ namespace Dao
         {
             Cliente c = null;
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;

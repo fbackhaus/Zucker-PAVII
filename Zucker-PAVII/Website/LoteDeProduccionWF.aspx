@@ -52,15 +52,10 @@
         <asp:GridView runat="server" ID="gvACargar" AutoGenerateColumns="false" HeaderStyle-BackColor="LightGray" CssClass="table table-hover table-bordered table-condensed" BackColor="White"  OnSelectedIndexChanged="gvACargar_SelectedIndexChanged" >
             <Columns>
             <asp:CommandField ButtonType="Button" ControlStyle-CssClass="btn btn-danger" SelectText="Quitar" ShowSelectButton="true" />
-                <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
-                <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
-                <asp:BoundField DataField="NombreMarca" HeaderText="Marca" />
-                <asp:BoundField DataField="NombreTipoGolosina" HeaderText="Tipo de Golosina" />
-                <asp:BoundField DataField="Precio_Vta" HeaderText="Precio de Venta" />
-                <asp:BoundField DataField="NombreEsPropia" HeaderText="Es Propia?" />
-                <asp:BoundField DataField="Codigo_Producto" HeaderText="Codigo del Producto" />
+                <asp:BoundField DataField="Id_golosina" HeaderText="Codigo del Producto" />
+                <asp:BoundField DataField="NombreGol" HeaderText="Nombre" />
                 <asp:BoundField DataField="Stock" HeaderText="Stock Futuro" />
-                <asp:BoundField DataField="cantidad" HeaderText="Cantidad" />
+                <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
             </Columns>
         </asp:GridView>
         

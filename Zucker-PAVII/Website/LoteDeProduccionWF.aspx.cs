@@ -87,12 +87,15 @@ public partial class LoteDeProduccionWF : System.Web.UI.Page
             ID = int.Parse(gvGolosinas.SelectedDataKey.Value.ToString());
             tituloMP.Visible = true;
             List<DetalleProduccion> listaDetalles = (List<DetalleProduccion>)Session["ListaDetalles"];
-            DetalleProduccion detalle = LoteProduccionDao.obtenerPorID(ID);
+            DetalleProduccion detalle = new DetalleProduccion();
+            
+            detalle = LoteProduccionDao.obtenerPorID(ID);
 
             detalle.cantidad = Cantidad;
             detalle.stock += detalle.cantidad;
             listaDetalles.Add(detalle);
             gvACargar.DataSource = listaDetalles;
+            gvACargar.DataKeyNames = new String[] { "id_detalle" };
             gvACargar.DataBind();
             Session["ListaDetalles"] = listaDetalles;
         }
@@ -176,7 +179,7 @@ public partial class LoteDeProduccionWF : System.Web.UI.Page
                 return;
 
             LoteProduccion lote = new LoteProduccion();
-            lote.codLote = LoteProduccionDao.ultimoIDCompra() + 1;
+            lote.codLote = int.Parse(txtNumLote.Text);
             Empleado emp = (Empleado)Session["Empleado"];
             lote.id_empleado = emp.id_empleado.Value;
             lote.fecha = DateTime.Parse(txtFecha.Text);

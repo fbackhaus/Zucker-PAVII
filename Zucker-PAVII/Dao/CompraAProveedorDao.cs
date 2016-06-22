@@ -14,7 +14,7 @@ namespace Dao
         {
             List<String> listaProveedores = new List<String>();
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -33,7 +33,7 @@ namespace Dao
         {
             List<DetalleCompraAProveedor> listaDetalles = new List<DetalleCompraAProveedor>();
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -81,7 +81,7 @@ namespace Dao
         {
             DetalleCompraAProveedor detalle = null;
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -118,7 +118,7 @@ namespace Dao
         public static int ultimoIDCompra()
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -130,7 +130,7 @@ namespace Dao
         public static void actualizarIDCompra(int id_com)
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -143,7 +143,7 @@ namespace Dao
         public static int ultimoIDDetalle()
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -155,7 +155,7 @@ namespace Dao
         public static void actualizarIDDetalle(int id_detalle)
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -168,7 +168,7 @@ namespace Dao
         public static void Insertar(CompraAProveedor compra, List<DetalleCompraAProveedor> listaDetalles)
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlTransaction tran = cn.BeginTransaction();
             try
@@ -222,7 +222,7 @@ namespace Dao
         public static void ActualizarStock(DetalleCompraAProveedor detalle)
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=LUCA\SQLSERVER;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
