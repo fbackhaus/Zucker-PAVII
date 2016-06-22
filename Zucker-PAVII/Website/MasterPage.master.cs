@@ -13,18 +13,18 @@ public partial class MasterPage : System.Web.UI.MasterPage
         if (empleado != null)
         {
             mnuPedidoAProv.Visible = empleado.puede_realizar_pedidos;
-            mnuListadoEmpleados.Visible = true;
+     //       mnuListadoEmpleados.Visible = true;
             mnuListadoClientes.Visible = true;
-            mnuListadoGolosinas.Visible = true;
+     //       mnuListadoGolosinas.Visible = true;
             mnuGolosinas.Visible = true;
             mnuEmpleados.Visible = true;
         }
         else
         {
             mnuPedidoAProv.Visible = false;
-            mnuListadoEmpleados.Visible = false;
+        //    mnuListadoEmpleados.Visible = false;
             mnuListadoClientes.Visible = false;
-            mnuListadoGolosinas.Visible = false;
+        //    mnuListadoGolosinas.Visible = false;
             mnuGolosinas.Visible = false;
             mnuEmpleados.Visible = false;
         }
