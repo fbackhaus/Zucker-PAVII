@@ -151,6 +151,7 @@ public partial class LoteDeProduccionWF : System.Web.UI.Page
                 if (det.id_golosina == ID)
                 {
                     indice = listaDetalles.IndexOf(det);
+                    
                     break;
                 }
             }
@@ -171,6 +172,7 @@ public partial class LoteDeProduccionWF : System.Web.UI.Page
         }
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
+            Limpiar();
 
         }
         protected void btnConfirmar_Click(object sender, EventArgs e)
@@ -213,6 +215,8 @@ public partial class LoteDeProduccionWF : System.Web.UI.Page
         nombreGol = String.Empty;
         
         txtBuscar.Text = String.Empty;
+        txtFecha.Text = String.Empty;
+        txtNumLote.Text = String.Empty;
         
         Session["ListaDetalles"] = new List<DetalleCompraAProveedor>();
         gvACargar.DataSource = null;

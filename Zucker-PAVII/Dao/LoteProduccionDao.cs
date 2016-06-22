@@ -36,10 +36,11 @@ namespace Dao
                     detalle.id_produccion= lote.codLote;
                     SqlCommand cmdDet = new SqlCommand();
                     cmdDet.Connection = cn;
-                    cmdDet.CommandText = "Insert into Detalle_Produccion (id_produccion,id_golosina,cantidad_producida) values (@ID_Prod,@Id_Gol,@Cant)";
-                    cmd.Parameters.AddWithValue(@"ID_Prod", detalle.id_produccion);
-                    cmd.Parameters.AddWithValue(@"Id_Gol", detalle.id_golosina);
-                    cmd.Parameters.AddWithValue(@"Cant", detalle.cantidad);
+                    cmdDet.CommandText = @"Insert into Detalle_Produccion (id_produccion, id_golosina,cantidad_producida)
+                                                values (@id_prod,@Id_Gol,@Cant)";
+                    cmdDet.Parameters.AddWithValue(@"id_prod",detalle.id_produccion);
+                    cmdDet.Parameters.AddWithValue(@"Id_Gol",detalle.id_golosina);
+                    cmdDet.Parameters.AddWithValue(@"Cant",detalle.cantidad);
                     
                     cmdDet.Transaction = tran;
 
@@ -54,6 +55,7 @@ namespace Dao
             catch(SqlException ex)
             {
                 tran.Rollback();
+
                 throw new ApplicationException("Error al Guardar el Pedido: " + ex.Message);
             }
             finally
@@ -88,6 +90,7 @@ namespace Dao
                 detalle.id_produccion = int.Parse(dr["id_produccion"].ToString());
                 detalle.id_detalle = int.Parse(dr["id_detalle"].ToString());
                 detalle.nombreGol = dr["nombre"].ToString();
+                detalle.stock = int.Parse(dr["stock"].ToString());
                 
 
             }
