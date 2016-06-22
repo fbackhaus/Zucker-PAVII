@@ -27,14 +27,12 @@
     <div class="form-group" id="divGrilla" runat="server">
         <asp:GridView ID="gvGolosinas" AutoGenerateColumns="False" runat="server" HeaderStyle-BackColor="LightGray" CssClass="table table-hover table-bordered table-condensed" BackColor="White">
             <Columns>
-                <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
-                <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
-                <asp:BoundField DataField="NombreMarca" HeaderText="Marca" />
-                <asp:BoundField DataField="Stock" HeaderText="Stock" />
-                <asp:BoundField DataField="NombreTipoGolosina" HeaderText="Tipo de Golosina" />
-                <asp:BoundField DataField="Precio_Vta" HeaderText="Precio de Venta" />
-                <asp:BoundField DataField="NombreEsPropia" HeaderText="Es Propia?" />
-                <asp:BoundField DataField="Codigo_Producto" HeaderText="Codigo del Producto" />
+                <asp:BoundField DataField="nombreGol" HeaderText="Golosina" />
+                <asp:BoundField DataField="Cantidad" HeaderText="Cantidad Producida" />
+
+                
+                
+                
             </Columns>
         </asp:GridView>
     </div>

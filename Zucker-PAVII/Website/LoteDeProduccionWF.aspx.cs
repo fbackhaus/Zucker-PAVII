@@ -28,7 +28,7 @@ public partial class LoteDeProduccionWF : System.Web.UI.Page
         {
             cargarGrillaGolosinas();
             Session["ListaDetalles"] = new List<DetalleProduccion>();
-
+            Cantidad = 1;
         }
 
     }
@@ -39,7 +39,7 @@ public partial class LoteDeProduccionWF : System.Web.UI.Page
         protected void cargarGrillaGolosinas()
         {
         
-        gvGolosinas.DataSource = from gol in GolosinaQueryDao.ObtenerPropias()
+        gvGolosinas.DataSource = from gol in GolosinaQueryDao.obtenerPropias()
                                  orderby gol.id_golosina
                                  select gol;
 
