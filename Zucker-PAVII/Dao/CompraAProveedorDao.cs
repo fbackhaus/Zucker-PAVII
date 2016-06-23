@@ -204,7 +204,7 @@ namespace Dao
 
                     cmdDet.ExecuteNonQuery();
                     actualizarIDDetalle(detalle.id_detalle);
-                    ActualizarStock(detalle);
+                    ActualizarStock(detalle, tran, cn);
                 }
                 tran.Commit();
             }
@@ -219,18 +219,15 @@ namespace Dao
             }
         }
 
-        public static void ActualizarStock(DetalleCompraAProveedor detalle)
+        public static void ActualizarStock(DetalleCompraAProveedor detalle, SqlTransaction tran, SqlConnection cn)
         {
-            SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
-            cn.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = cn;
-            cmd.CommandText = "Update Materia_Prima set stock = @Stock Where id_materia_prima = @Id_Materia_Prima";
-            cmd.Parameters.AddWithValue("@Stock", detalle.stock);
-            cmd.Parameters.AddWithValue("@Id_Materia_Prima", detalle.id_materia_prima);
-            cmd.ExecuteNonQuery();
-            cn.Close();
+            SqlCommand cmdStock = new SqlCommand();
+            cmdStock.Connection = cn;
+            cmdStock.CommandText = "Update Materia_Prima set stock = @Stock Where id_materia_prima = @Id_Materia_Prima";
+            cmdStock.Parameters.AddWithValue("@Stock", detalle.stock);
+            cmdStock.Parameters.AddWithValue("@Id_Materia_Prima", detalle.id_materia_prima);
+            cmdStock.Transaction = tran;
+            cmdStock.ExecuteNonQuery();
         }
 
     }
