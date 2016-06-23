@@ -14,7 +14,7 @@ namespace Dao
             List<GolosinaQuery> listGolosinas = new List<GolosinaQuery>();
             GolosinaQuery g = null;
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -49,7 +49,7 @@ namespace Dao
             List<GolosinaQuery> listGolosinas = new List<GolosinaQuery>();
             GolosinaQuery g = null;
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -109,7 +109,7 @@ namespace Dao
             List<Golosina> listGolosinas = new List<Golosina>();
              GolosinaQuery g = null;
              SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
              cn.Open();
              SqlCommand cmd = new SqlCommand();
              cmd.Connection=cn;
@@ -117,7 +117,7 @@ namespace Dao
                                  From Golosina g INNER JOIN Marca m ON g.id_marca = m.id_marca 
                                  INNER JOIN Tipo_Golosina t ON g.id_tipo_golosina = t.id_tipo_golosina
                                  WHERE g.nombre like @Nombre";
-            cmd.Parameters.AddWithValue("@Nombre", nombre + "%");
+            cmd.Parameters.AddWithValue("@Nombre", "%" + nombre + "%");
              SqlDataReader dr = cmd.ExecuteReader();
              while (dr.Read())
              {
@@ -148,7 +148,7 @@ namespace Dao
              List<Golosina> listGolosinas = new List<Golosina>();
              GolosinaQuery g = null;
              SqlConnection cn = new SqlConnection();
-             cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
+             cn.ConnectionString = @"Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
              cn.Open();
              SqlCommand cmd = new SqlCommand();
              cmd.Connection = cn;

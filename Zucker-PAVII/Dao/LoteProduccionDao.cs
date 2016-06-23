@@ -14,7 +14,7 @@ namespace Dao
         public static void Insertar(LoteProduccion lote, List<DetalleProduccion> listaDetalles)
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlTransaction tran = cn.BeginTransaction();
             try
@@ -32,11 +32,10 @@ namespace Dao
 
                 foreach (DetalleProduccion detalle in listaDetalles)
                 {
-                    detalle.id_detalle = ultimoIDDetalle() + 1;
                     detalle.id_produccion= lote.codLote;
                     SqlCommand cmdDet = new SqlCommand();
                     cmdDet.Connection = cn;
-                    cmdDet.CommandText = @"Insert into Detalle_Produccion (id_produccion, id_golosina,cantidad_producida)
+                    cmdDet.CommandText = @"Insert into Detalle_Produccion (id_produccion, id_golosina,cantidad)
                                                 values (@id_prod,@Id_Gol,@Cant)";
                     cmdDet.Parameters.AddWithValue(@"id_prod",detalle.id_produccion);
                     cmdDet.Parameters.AddWithValue(@"Id_Gol",detalle.id_golosina);
@@ -70,7 +69,7 @@ namespace Dao
         {
             DetalleProduccion detalle = null;
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -91,8 +90,6 @@ namespace Dao
                 detalle.id_detalle = int.Parse(dr["id_detalle"].ToString());
                 detalle.nombreGol = dr["nombre"].ToString();
                 detalle.stock = int.Parse(dr["stock"].ToString());
-                
-
             }
             dr.Close();
             cn.Close();
@@ -105,7 +102,7 @@ namespace Dao
         public static int ultimoIDLote()
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -118,7 +115,7 @@ namespace Dao
         public static int ultimoIDDetalle()
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;
@@ -132,7 +129,7 @@ namespace Dao
         public static void ActualizarStock(DetalleProduccion detalle)
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=ARMLGLOCCHIPI\SQLEXPRESS;Initial Catalog=BD_Golosinas;Integrated Security=True";
+            cn.ConnectionString = @"Data Source=FEDE-PC;Initial Catalog=BD_Golosinas;Integrated Security=True";
             cn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn;

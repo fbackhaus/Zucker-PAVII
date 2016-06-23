@@ -55,6 +55,7 @@
         </li>
         <li><a runat="server" id="mnuListadoClientes" href="/ListadoClienteWF.aspx">Listado de Clientes</a></li>
           <li><a runat="server" id="mnuPedidoAProv" href="CompraAProveedorWF.aspx">Nuevo Pedido a Proveedor <span class="sr-only">(current)</span></a></li>
+          <li><a runat="server" id="mnuLote" href="LoteDeProduccionWF.aspx">Nuevo Lote de Produccion <span class="sr-only">(current)</span></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a runat="server" id="menuRegistrarse" href="/ClienteWF.aspx"><span class="glyphicon glyphicon-user"></span> Registrarse</a></li>

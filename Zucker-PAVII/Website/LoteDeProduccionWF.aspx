@@ -9,11 +9,15 @@
     <div class="form-group">
         <label for="txtNumLote">N° Lote</label>
         <asp:TextBox ID="txtNumLote" TextMode="Number" runat="server" CssClass="form-control"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="rfvLote" runat="server" ControlToValidate="txtNumLote" Text="*" ErrorMessage="Por favor ingrese N° de Lote"
+          ValidationGroup="A"></asp:RequiredFieldValidator>
     </div>
 
     <div class="form-group">
         <label for="txtFecha">Fecha de Producción</label>
         <asp:TextBox ID="txtFecha" TextMode="Date" runat="server" CssClass="form-control"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="rfvFecha" runat="server" ControlToValidate="txtFecha" Text="*" ErrorMessage="Por favor ingrese Fecha"
+          ValidationGroup="A"></asp:RequiredFieldValidator>
     </div>
 
     <div class="form-group">
@@ -61,10 +65,10 @@
         
     </div>
     <div class="form-group" style="text-align:center">
-        <asp:Button runat="server" ID="btnConfirmar" OnClick="btnConfirmar_Click" Text="Confirmar" CssClass="btn btn-success"/>
+        <asp:Button ValidationGroup="A" CausesValidation="true" runat="server" ID="btnConfirmar" OnClick="btnConfirmar_Click" Text="Confirmar" CssClass="btn btn-success"/>
         <asp:Button ID="btnNuevo" runat="server" text="Nuevo" CssClass="btn btn-default" OnClick="btnNuevo_Click" />
     </div>
-
+    <asp:ValidationSummary runat="server" ID="vsLote" ValidationGroup="A" />
   </asp:Content>
 
    

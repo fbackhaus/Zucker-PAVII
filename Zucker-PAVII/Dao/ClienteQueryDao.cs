@@ -76,7 +76,7 @@ namespace Dao
             }
             if(date.HasValue)
             {
-                cmd.CommandText += " AND c.fecha_fundacion = '2013-10-30'";
+                cmd.CommandText += " AND c.fecha_fundacion > '" + date.ToString() +"'";
                 cmd.Parameters.AddWithValue("@Fecha", date);
             }
 

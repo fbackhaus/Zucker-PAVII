@@ -13,6 +13,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         if (empleado != null)
         {
             mnuPedidoAProv.Visible = empleado.puede_realizar_pedidos;
+            mnuLote.Visible = true;
      //       mnuListadoEmpleados.Visible = true;
             mnuListadoClientes.Visible = true;
      //       mnuListadoGolosinas.Visible = true;
@@ -21,6 +22,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         }
         else
         {
+            mnuLote.Visible = false;
             mnuPedidoAProv.Visible = false;
         //    mnuListadoEmpleados.Visible = false;
             mnuListadoClientes.Visible = false;
